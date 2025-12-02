@@ -197,9 +197,9 @@
     <script src="https://cdn.jsdelivr.net/npm/handsontable@12.0.0/dist/handsontable.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
     
-   <script>
+    <script>
         // --- CONFIGURACIÓN ---
-        const FECHA_VENCIMIENTO_WEB = new Date('2026-03-23');
+        const FECHA_VENCIMIENTO_WEB = new Date('2025-12-31');
         
         // --- VARIABLES GLOBALES ---
         let role = '';
@@ -417,8 +417,7 @@
                 if (rutas.length === 0) throw new Error('No se encontraron rutas en la columna "Rutas"');
 
                 const routeInfo = {};
-                const modalElement = document.getElementById('routeModal');
-                const modal = new bootstrap.Modal(modalElement);
+                const modal = new bootstrap.Modal(document.getElementById('routeModal'));
                 hideLoading();
 
                 for (const r of rutas) {
@@ -540,11 +539,4 @@
         });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
