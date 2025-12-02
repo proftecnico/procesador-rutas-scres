@@ -172,7 +172,13 @@
                     </div>
                     <div class="modal-body">
                         <form id="routeForm">
-                            <div class="mb-3"><label class="form-label">Unidad</label><input type="text" class="form-control" id="unidad" required></div>
+                            <div class="mb-3">
+                                <label class="form-label">Unidad</label>
+                                <input type="text" class="form-control" id="unidad" required>
+                            </div>
+                            <div class="mb-2">
+                                <small class="text-muted">Aplicando a: <span id="rutaActualText" class="fw-bold"></span></small>
+                            </div>
                             <div class="row g-3">
                                 <div class="col-6"><label class="form-label">Inicio Fecha</label><input type="date" class="form-control" id="fechaInicio" required></div>
                                 <div class="col-6"><label class="form-label">Fin Fecha</label><input type="date" class="form-control" id="fechaFin" required></div>
@@ -432,7 +438,7 @@
         }
 
         // ==========================================
-        // 4. PROCESAMIENTO DE DATOS (CORREGIDO PARA EVITAR CONGELAMIENTO)
+        // 4. PROCESAMIENTO DE DATOS (Agrupando Rutas)
         // ==========================================
         async function processData() {
             if (processing) return;
@@ -446,8 +452,15 @@
                 const data = allData.slice(1).filter(r => r[0] && r[0].toString().trim() !== '');
                 if (data.length === 0) throw new Error('Sin datos para procesar');
 
+                // CAMBIO PRINCIPAL: Usar el Set para guardar la línea completa de la celda, no split
                 const rutasSet = new Set();
-                data.forEach(r => { if (r[5]) r[5].toString().split(',').forEach(x => {if(x.trim()) rutasSet.add(x.trim())}) });
+                data.forEach(r => { 
+                    if (r[5] && r[5].toString().trim() !== '') {
+                        // Guardamos el contenido COMPLETO de la celda, sin cortar por comas
+                        rutasSet.add(r[5].toString().trim());
+                    }
+                });
+                
                 const rutas = [...rutasSet];
                 
                 if (rutas.length === 0) throw new Error('No se encontraron rutas en la columna "Rutas"');
@@ -457,8 +470,12 @@
                 const modal = new bootstrap.Modal(modalElement, { backdrop: 'static', keyboard: false });
                 hideLoading();
 
-                for (const r of rutas) {
-                    document.getElementById('routeModalLabel').innerText = `⚙️ Configurar Ruta ${r}`;
+                for (const rutaString of rutas) {
+                    // Cortamos visualmente si es muy largo, para que quepa en el modal
+                    const rutaVisual = rutaString.length > 50 ? rutaString.substring(0, 47) + '...' : rutaString;
+                    document.getElementById('routeModalLabel').innerText = `⚙️ Configurar Ruta`;
+                    document.getElementById('rutaActualText').innerText = rutaVisual; // Mostramos a qué estamos aplicando
+                    
                     const f = document.getElementById('routeForm'); f.reset();
                     // Fechas default
                     document.getElementById('fechaInicio').value = new Date(Date.now()-86400000).toISOString().split('T')[0];
@@ -472,7 +489,6 @@
                             if(u && d1 && d2 && t1 && t2) {
                                 modal.hide(); 
                                 document.getElementById('submitRoute').removeEventListener('click', handler);
-                                // AQUI EL CAMBIO IMPORTANTE: PAUSA PARA QUE BOOTSTRAP RESPIRE
                                 setTimeout(() => {
                                     resolve({unidad:u, inicio:`${d1} ${t1}`, fin:`${d2} ${t2}`});
                                 }, 300); 
@@ -481,7 +497,9 @@
                         document.getElementById('submitRoute').addEventListener('click', handler);
                         modal.show();
                     });
-                    routeInfo[r] = info;
+                    
+                    // Guardamos la configuración asociada a la cadena COMPLETA de la celda
+                    routeInfo[rutaString] = info;
                 }
 
                 showLoading('Generando...');
@@ -489,9 +507,10 @@
                 
                 data.forEach((row, i) => {
                     const realIdx = allData.indexOf(row);
-                    const rs = row[5] ? row[5].toString().split(',').map(x=>x.trim()) : [];
-                    let info = null;
-                    for(const x of rs) if(routeInfo[x]) {info=routeInfo[x]; break;}
+                    
+                    // Buscamos la info usando la cadena completa de la celda
+                    const cellContent = row[5] ? row[5].toString().trim() : '';
+                    const info = routeInfo[cellContent];
                     
                     if(!info || !row[12] || !row[13]) return;
 
