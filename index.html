@@ -124,7 +124,6 @@
                                 <div class="card bg-light border-0 p-3">
                                     <h6 class="text-muted mb-3 text-uppercase fw-bold" style="font-size: 0.75rem;">Opciones de Envío</h6>
                                     <div class="d-flex flex-wrap gap-3">
-                                        
                                         <div class="bg-white p-3 rounded border flex-fill">
                                             <div class="d-flex align-items-center mb-2">
                                                 <div id="serialStatusDot" style="width:10px; height:10px; border-radius:50%; background:#ef4444; margin-right:8px;"></div>
@@ -145,7 +144,6 @@
                                                 <button class="btn btn-dark btn-sm" id="btnSendAgent" onclick="sendToLocalAgent()" disabled>📡 Enviar vía Script</button>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +164,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="routeModal" tabindex="-1">
+        <div class="modal fade" id="routeModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -199,7 +197,7 @@
     
     <script>
         // --- CONFIGURACIÓN ---
-        const FECHA_VENCIMIENTO_WEB = new Date('2025-12-31');
+        const FECHA_VENCIMIENTO_WEB = new Date('2026-03-23');
         
         // --- VARIABLES GLOBALES ---
         let role = '';
@@ -434,7 +432,7 @@
         }
 
         // ==========================================
-        // 4. PROCESAMIENTO DE DATOS
+        // 4. PROCESAMIENTO DE DATOS (CORREGIDO PARA EVITAR CONGELAMIENTO)
         // ==========================================
         async function processData() {
             if (processing) return;
@@ -455,7 +453,8 @@
                 if (rutas.length === 0) throw new Error('No se encontraron rutas en la columna "Rutas"');
 
                 const routeInfo = {};
-                const modal = new bootstrap.Modal(document.getElementById('routeModal'));
+                const modalElement = document.getElementById('routeModal');
+                const modal = new bootstrap.Modal(modalElement, { backdrop: 'static', keyboard: false });
                 hideLoading();
 
                 for (const r of rutas) {
@@ -471,8 +470,12 @@
                             const d1 = document.getElementById('fechaInicio').value, d2 = document.getElementById('fechaFin').value;
                             const t1 = document.getElementById('inicioHora').value, t2 = document.getElementById('finHora').value;
                             if(u && d1 && d2 && t1 && t2) {
-                                modal.hide(); document.getElementById('submitRoute').removeEventListener('click', handler);
-                                resolve({unidad:u, inicio:`${d1} ${t1}`, fin:`${d2} ${t2}`});
+                                modal.hide(); 
+                                document.getElementById('submitRoute').removeEventListener('click', handler);
+                                // AQUI EL CAMBIO IMPORTANTE: PAUSA PARA QUE BOOTSTRAP RESPIRE
+                                setTimeout(() => {
+                                    resolve({unidad:u, inicio:`${d1} ${t1}`, fin:`${d2} ${t2}`});
+                                }, 300); 
                             } else alert('Completa todos los campos');
                         };
                         document.getElementById('submitRoute').addEventListener('click', handler);
