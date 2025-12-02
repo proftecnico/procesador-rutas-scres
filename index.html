@@ -3,190 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scres© - Procesador de Rutas</title>
-    <link rel="icon" href="logo.png" type="image/png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Scres© - Procesador de Rutas Urbanas</title>
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/handsontable@12.0.0/dist/handsontable.full.min.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/handsontable@13.1.0/dist/handsontable.full.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3b82f6; --primary-dark: #1d4ed8; --secondary-color: #475569;
-            --success-color: #10b981; --warning-color: #f59e0b; --accent-orange: #ff6600;
-            --bg-gradient-start: #f1f5f9; --bg-gradient-end: #e2e8f0;
-            --card-shadow: 0 10px 40px -10px rgba(0,0,0,0.1);
-            --header-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --primary: #3b82f6; --success: #10b981; --warning: #f59e0b; --danger: #ef4444;
+            --accent: #ff6600; --dark: #0f172a; --gray: #64748b;
         }
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%); min-height: 100vh; padding: 40px 20px; color: #334155; }
-        .main-container { background: white; border-radius: 16px; box-shadow: var(--card-shadow); overflow: hidden; max-width: 1400px; margin: 0 auto; border: 1px solid rgba(255,255,255,0.5); }
-        .header { background: var(--header-gradient); color: white; padding: 40px 30px; text-align: center; position: relative; }
-        .header h1 { margin: 0; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.5px; }
-        .brand-scres { font-family: 'Press Start 2P', cursive; font-size: 2rem; color: var(--accent-orange); text-shadow: 2px 2px 0px #000; display: block; margin-bottom: 5px; }
-        .brand-subtitle { font-size: 0.85rem; letter-spacing: 1px; color: #94a3b8; margin-top: 0; font-weight: 500; display: block; }
-        .header p { margin: 10px 0 0; color: #cbd5e1; font-size: 1rem; font-weight: 300; }
-        .login-container { max-width: 400px; margin: 80px auto; padding: 40px; background: white; border-radius: 16px; box-shadow: 0 20px 50px -12px rgba(0,0,0,0.1); border: 1px solid #f1f5f9; }
-        .login-container h2 { color: #1e293b; margin-bottom: 30px; text-align: center; font-weight: 700; font-size: 1.5rem; }
-        .form-control { padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0; background-color: #f8fafc; transition: all 0.2s; }
-        .form-control:focus { background-color: white; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
-        .btn-login { background: var(--primary-color); border: none; padding: 14px; font-weight: 600; border-radius: 8px; margin-top: 10px; transition: all 0.2s; color: white; }
-        .btn-login:hover { background: var(--primary-dark); transform: translateY(-1px); }
-        .content-wrapper { padding: 40px; }
-        .nav-tabs { border-bottom: 2px solid #f1f5f9; gap: 10px; }
-        .nav-tabs .nav-link { color: #64748b; border: none; padding: 12px 20px; font-weight: 500; border-radius: 8px; transition: all 0.2s; }
-        .nav-tabs .nav-link:hover { color: var(--primary-color); background: #f8fafc; }
-        .nav-tabs .nav-link.active { color: var(--primary-color); background: #eff6ff; font-weight: 600; }
-        .table-section { background: white; padding: 0; margin-top: 25px; }
-        .table-section h2 { color: #1e293b; font-size: 1.25rem; margin-bottom: 10px; font-weight: 700; }
-        .table-container { border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; }
-        .btn-process, .btn-send, .btn-save, .btn-copy { border: none; border-radius: 8px; padding: 12px 24px; font-weight: 600; color: white; }
-        .btn-process { background-color: var(--success-color); }
-        .btn-send { background-color: var(--primary-color); }
-        .btn-send:disabled { background-color: #94a3b8; }
-        .btn-save { background-color: var(--warning-color); }
-        .btn-copy { background-color: #6366f1; }
-        .output { background: #1e293b; color: #34d399; padding: 25px; border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; line-height: 1.6; border: 1px solid #334155; box-shadow: inset 0 2px 10px rgba(0,0,0,0.2); margin-top: 20px; max-height: 400px; overflow-y: auto; white-space: pre; }
-        .user-badge { position: absolute; top: 30px; right: 30px; background: rgba(255,255,255,0.1); color: white; padding: 6px 16px; border-radius: 30px; font-size: 0.8rem; font-weight: 500; backdrop-filter: blur(5px); }
-        .info-badge { display: inline-flex; align-items: center; background: #eff6ff; color: #2563eb; padding: 8px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 500; border: 1px solid #dbeafe; }
-        .loading-overlay { background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); z-index: 9999; }
-        .alert-custom { position: fixed; top: 20px; right: 20px; z-index: 10000; min-width: 300px; border-left: 5px solid currentColor; box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); min-height: 100vh; padding: 20px; }
+        .main-container { max-width: 1600px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px -15px rgba(0,0,0,0.15); overflow: hidden; }
+        .header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 50px 30px; text-align: center; position: relative; }
+        .brand-scres { font-family: 'Press Start 2P', cursive; font-size: 2.8rem; color: var(--accent); text-shadow: 4px 4px 0 #000; }
+        .user-badge { position: absolute; top: 20px; right: 30px; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 50px; font-weight: 600; backdrop-filter: blur(10px); }
+        .content { padding: 40px; }
+        .output { background: #0f172a; color: #34d399; padding: 25px; border-radius: 12px; font-family: 'Courier New', monospace; font-size: 0.92rem; max-height: 500px; overflow-y: auto; white-space: pre-wrap; border: 1px solid #334155; }
+        .group-badge { background: #dbeafe; color: #1d4ed8; padding: 8px 14px; border-radius: 10px; font-weight: bold; font-size: 0.9rem; }
+        .btn-process { background: var(--success); border: none; padding: 16px 32px; font-size: 1.1rem; font-weight: 600; border-radius: 12px; }
+        .btn-copy { background: #6366f1; border: none; padding: 16px 32px; font-size: 1.1rem; font-weight: 600; border-radius: 12px; }
+        .alert-custom { position: fixed; top: 20px; right: 20px; z-index: 10000; min-width: 350px; }
+        .table-container { border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <!-- LOGIN -->
-        <div id="login-form">
-            <div class="login-container">
-                <div class="text-center mb-4">
-                    <small class="text-muted text-uppercase fw-bold" style="letter-spacing: 2px;">Bienvenido a</small>
-                    <div class="brand-scres mt-2">SCRES©</div>
-                    <span class="brand-subtitle" style="color: var(--accent-orange);">By Jorge Garavagno</span>
-                </div>
-                <h2>Iniciar Sesión</h2>
-                <form onsubmit="login(event)">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Usuario</label>
-                        <input type="text" class="form-control" id="username" placeholder="Ej: Aesa" required autocomplete="username">
-                    </div>
-                    <div class="mb-4">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" placeholder="••••••••" required autocomplete="current-password">
-                    </div>
-                    <button type="submit" class="btn btn-login w-100">Acceder al Sistema</button>
-                    <div class="text-center mt-3"><small class="text-muted" style="font-size: 0.75rem;">Acceso restringido</small></div>
-                </form>
-            </div>
+<div class="main-container">
+    <!-- LOGIN -->
+    <div id="login-form" class="text-center p-5">
+        <div class="brand-scres mb-4">SCRES©</div>
+        <small class="text-muted d-block mb-4">By Jorge Garavagno</small>
+        <form onsubmit="login(event)" class="mx-auto" style="max-width: 400px;">
+            <input type="text" class="form-control form-control-lg mb-3" id="username" placeholder="Usuario" required>
+            <input type="password" class="form-control form-control-lg mb-4" id="password" placeholder="Contraseña" required>
+            <button type="submit" class="btn btn-primary w-100 btn-lg">Ingresar al Sistema</button>
+        </form>
+    </div>
+
+    <!-- APP PRINCIPAL -->
+    <div id="main-content" style="display:none;">
+        <div class="header">
+            <div class="brand-scres">SCRES©</div>
+            <h1 class="mt-2">Procesador de Rutas Urbanas</h1>
+            <div class="user-badge" id="userBadge"></div>
         </div>
 
-        <!-- CONTENIDO PRINCIPAL -->
-        <div id="main-content" style="display: none;">
-            <div class="header">
-                <div class="brand-container">
-                    <div class="brand-scres">SCRES©</div>
-                    <span class="brand-subtitle">By Jorge Garavagno</span>
+        <div class="content">
+            <ul class="nav nav-tabs mb-4" id="mainTabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#ptos">Tabla de Puntos</a>
+                </li>
+                <li class="nav-item" id="admin-tab" style="display:none;">
+                    <a class="nav-link" data-bs-toggle="tab" href="#base">Base de Unidades (Admin)</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <!-- TABLA PUNTOS -->
+                <div class="tab-pane fade show active" id="ptos">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h3>Pega los datos desde Excel</h3>
+                        <span class="badge bg-primary fs-6">Columnas: Dirección, Punto, ..., Rutas, ..., Latitud, Longitud</span>
+                    </div>
+                    <div class="table-container mb-4" id="ptos-table"></div>
+
+                    <div class="d-flex flex-wrap gap-3 align-items-center mb-4">
+                        <button class="btn btn-process text-white" id="btnProcess">Procesar Datos</button>
+                        <button class="btn btn-copy text-white" id="btnCopy" style="display:none;">Copiar Todo</button>
+                        <div id="statusText" class="text-muted ms-3"></div>
+                    </div>
+
+                    <div id="output" class="output" style="display:none;"></div>
                 </div>
-                <h1>Procesador de Rutas Urbanas</h1>
-                <p>Sistema integral de gestión y procesamiento de datos</p>
-                <div class="user-badge" id="userBadge"></div>
-            </div>
 
-            <div class="content-wrapper">
-                <ul class="nav nav-tabs">
-                    <li class="nav-item"><a class="nav-link active" href="#ptos" data-bs-toggle="tab"><i class="bi bi-table"></i> Tabla Ptos</a></li>
-                    <li class="nav-item" id="admin-tab" style="display: none;"><a class="nav-link" href="#base" data-bs-toggle="tab"><i class="bi bi-database"></i> Base de Datos (Admin)</a></li>
-                </ul>
-
-                <div class="tab-content mt-4">
-                    <div class="tab-pane active" id="ptos">
-                        <div class="table-section">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h2>Tabla de Puntos</h2>
-                                <div class="info-badge">Pega los datos desde Excel</div>
-                            </div>
-                            <p class="text-muted small mb-4">
-                                <strong>Columnas requeridas:</strong> Dirección, Punto de recolección, Mobiliario urbano, Tipo, Tag, Rutas, Total incidencias, Incidencias pendientes, Promedio, Servicios totales, Servicios no operados, Cumplimiento, Latitud, Longitud, Unidad, Inicio, Fin
-                            </p>
-                            <div class="table-container" id="ptos-table"></div>
-
-                            <div class="mt-4 d-flex flex-wrap align-items-center gap-3">
-                                <button class="btn btn-process" id="btnProcess">Procesar Datos</button>
-                                <button class="btn btn-send" id="btnSend" disabled>Enviar vía Agente Local</button>
-                                <button class="btn btn-copy" id="btnCopy" style="display:none;">Copiar Todo</button>
-                                <div id="agentStatus" class="text-muted small ms-3">Esperando procesar...</div>
-                            </div>
-
-                            <div id="output" class="output" style="display:none;"></div>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane" id="base">
-                        <div class="table-section">
-                            <h2>Base de Datos de Unidades</h2>
-                            <div class="alert alert-warning alert-custom position-relative">
-                                <strong>Atención:</strong> Esta tabla solo es editable por administradores.
-                            </div>
-                            <div class="table-container" id="base-table"></div>
-                            <button class="btn btn-save mt-3" onclick="saveBase()">Guardar Cambios</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL CONFIGURACIÓN RUTA -->
-        <div class="modal fade" id="routeModal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="routeModalLabel">Configuración de Ruta</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="routeForm">
-                            <div class="mb-3">
-                                <label class="form-label">Unidad Asignada</label>
-                                <input type="text" class="form-control" id="unidad" required placeholder="Ej: 1018">
-                            </div>
-                            <div class="row g-3">
-                                <div class="col-6"><label class="form-label">Fecha Inicio</label><input type="date" class="form-control" id="fechaInicio" required></div>
-                                <div class="col-6"><label class="form-label">Fecha Fin</label><input type="date" class="form-control" id="fechaFin" required></div>
-                            </div>
-                            <div class="row g-3 mt-1">
-                                <div class="col-6"><label class="form-label">Hora Inicio</label><input type="time" class="form-control" id="inicioHora" required></div>
-                                <div class="col-6"><label class="form-label">Hora Fin</label><input type="time" class="form-control" id="finHora" required></div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="submitRoute">Confirmar</button>
-                    </div>
+                <!-- BASE DE UNIDADES (ADMIN) -->
+                <div class="tab-pane fade" id="base">
+                    <h3>Base de Datos de Unidades</h3>
+                    <div class="alert alert-warning">Solo visible y editable por administradores</div>
+                    <div class="table-container" id="base-table"></div>
+                    <button class="btn btn-warning mt-3" onclick="saveBase()">Guardar Base de Datos</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/handsontable@12.0.0/dist/handsontable.full.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
-    <script>
-        let role = '';
-        let ptosHot, baseHot;
-        let processing = false;
-        let generatedData = [];
+    <!-- MODAL CONFIGURACIÓN POR GRUPO -->
+    <div class="modal fade" id="routeModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="modalTitle">Configuración de Grupo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="group-badge mb-3" id="groupDisplay"></div>
+                    <form id="routeForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Unidad asignada</label>
+                            <input type="text" class="form-control form-control-lg" id="unidad" required placeholder="Ej: 1018">
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <label class="form-label">Fecha Inicio</label>
+                                <input type="date" class="form-control" id="fechaInicio" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Fecha Fin</label>
+                                <input type="date" class="form-control" id="fechaFin" required>
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-3">
+                            <div class="col-6">
+                                <label class="form-label">Hora Inicio</label>
+                                <input type="time" class="form-control" id="inicioHora" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Hora Fin</label>
+                                <input type="time" class="form-control" id="finHora" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-lg" id="submitRoute">Confirmar Configuración</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        // Licencia ofuscada (más difícil de modificar)
-        const licenciaValida = () => {
-            const v = [2025, 11, 31]; // año, mes-1, día
-            return new Date() <= new Date(v[0], v[1], v[2]);
-        };
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/handsontable@13.1.0/dist/handsontable.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"></script>
 
-        const baseData = [
-            ['Unidades', 'IMEI', 'ID', 'IMEI LENG', 'ID LENG', '', '', ''],
-            [1016, 863071012736986, '003535', 15, 6, '', '', ''],
+<script>
+// ====== VARIABLES GLOBALES ======
+let ptosHot, baseHot, role = '', generatedData = [], processing = false;
+const FECHA_VENCIMIENTO = new Date('2025-12-31');
+
+// Base de datos por defecto (se guarda en localStorage)
+const defaultBase = [
+    ['Unidad', 'IMEI', 'ID', 'IMEI_LEN', 'ID_LEN'],
+   [1016, 863071012736986, '003535', 15, 6, '', '', ''],
             [1017, 863071012769128, '003438', 15, 6, '', '', ''],
             [1018, 863071013879850, '003519', 15, 6, '', -346421699523926, -583595314025879],
             [1019, 863071013881120, '003332', 15, 6, '', '', ''],
@@ -230,259 +189,222 @@
             [1039, 863071013906687, '105013', 15, 6, '', '', ''],
             [1037, 864352043390210, '050384', 15, 6, '', '', '']
 
-        ];
-        if (!localStorage.getItem('baseData')) localStorage.setItem('baseData', JSON.stringify(baseData));
+];
+if (!localStorage.getItem('baseData')) {
+    localStorage.setItem('baseData', JSON.stringify(defaultBase));
+}
 
-        // --- AGENTE LOCAL ---
-        async function checkAgentStatus() {
-            try {
-                const r = await fetch('http://127.0.0.1:5000/status', { method: 'GET', cache: 'no-store' });
-                return r.ok;
-            } catch { return false; }
+// ====== LOGIN CON FECHA ONLINE ======
+async function login(e) {
+    e.preventDefault();
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value;
+    const fechaInternet = await obtenerFechaInternet();
+
+    if (!fechaInternet) {
+        return alert('Sin conexión a internet. No se puede validar la licencia.');
+    }
+
+    if (user === 'admin' && pass === 'adminpass') {
+        role = 'admin';
+        iniciarApp('Administrador');
+    } else if (user === 'Aesa' && pass === 'Salvadores') {
+        if (fechaInternet > FECHA_VENCIMIENTO) {
+            return alert('LICENCIA VENCIDA - Contacte al proveedor');
         }
+        role = 'normal';
+        iniciarApp('Cliente Aesa');
+    } else {
+        alert('Credenciales incorrectas');
+    }
+}
 
-        async function sendToLocalAgent() {
-            if (generatedData.length === 0) return showAlert('No hay datos para enviar', 'warning');
-            const btn = document.getElementById('btnSend');
-            const status = document.getElementById('agentStatus');
+async function obtenerFechaInternet() {
+    try {
+        const r = await fetch('https://worldtimeapi.org/api/timezone/America/Argentina/Buenos_Aires', { cache: 'no-store' });
+        const d = await r.json();
+        return new Date(d.datetime);
+    } catch (e) {
+        return null;
+    }
+}
 
-            status.innerHTML = 'Buscando agente...';
-            const online = await checkAgentStatus();
-            if (!online) {
-                showAlert('Agente no detectado. Ejecuta el .exe', 'danger');
-                status.innerHTML = 'Agente desconectado';
-                return;
-            }
+function iniciarApp(badge) {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+    document.getElementById('userBadge').textContent = badge;
+    if (role === 'admin') document.getElementById('admin-tab').style.display = 'block';
+    initTables();
+}
 
-            btn.disabled = true; btn.innerHTML = 'Enviando...';
-            status.innerHTML = 'Enviando...'; status.style.color = 'green';
+// ====== TABLAS ======
+function initTables() {
+    ptosHot = new Handsontable(document.getElementById('ptos-table'), {
+        data: [['Dirección','Punto','Mobiliario','Tipo','Tag','Rutas','Total','Pend','Prom','Serv','No Op','Cumpl','Lat','Long','Unidad','Inicio','Fin']],
+        rowHeaders: true, colHeaders: true, height: 620, minRows: 50,
+        licenseKey: 'non-commercial-and-evaluation', contextMenu: true, stretchH: 'all'
+    });
 
-            try {
-                const res = await fetch('http://127.0.0.1:5000/enviar', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ lines: generatedData })
-                });
-                const data = await res.json();
-                if (res.ok) {
-                    showAlert(`Éxito: ${data.processed} líneas enviadas`, 'success');
-                    status.innerHTML = 'Envío completado';
-                } else throw new Error(data.error || 'Error desconocido');
-            } catch (e) {
-                showAlert('Error al enviar: ' + e.message, 'danger');
-                status.innerHTML = 'Error';
-            } finally {
-                btn.disabled = false; btn.innerHTML = 'Enviar vía Agente Local';
-            }
-        }
+    if (role === 'admin') {
+        const saved = JSON.parse(localStorage.getItem('baseData') || '[]');
+        baseHot = new Handsontable(document.getElementById('base-table'), {
+            data: saved.length ? saved : defaultBase,
+            rowHeaders: true, colHeaders: true, height: 500,
+            licenseKey: 'non-commercial-and-evaluation', contextMenu: true
+        });
+    }
+}
 
-        // --- UTILIDADES ---
-        function showAlert(msg, type = 'info') {
-            const div = document.createElement('div');
-            div.className = `alert alert-${type} alert-custom shadow-lg`;
-            div.innerHTML = `<strong>${msg}</strong>`;
-            document.body.appendChild(div);
-            setTimeout(() => div.remove(), 4500);
-        }
+function saveBase() {
+    if (role !== 'admin') return;
+    localStorage.setItem('baseData', JSON.stringify(baseHot.getData()));
+    alert('Base de datos guardada correctamente');
+}
 
-        function showLoading(msg = 'Procesando...') {
-            const overlay = document.createElement('div');
-            overlay.className = 'position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center loading-overlay';
-            overlay.innerHTML = `<div class="bg-white p-5 rounded-4 shadow-lg text-center"><div class="spinner-border text-primary mb-3" style="width:3rem;height:3rem;"></div><h5>${msg}</h5></div>`;
-            overlay.id = 'loading';
-            document.body.appendChild(overlay);
-        }
-        function hideLoading() { const el = document.getElementById('loading'); if(el) el.remove(); }
-
-        // --- LOGIN ---
-        function login(e) {
-            e.preventDefault();
-            const user = document.getElementById('username').value.trim();
-            const pass = document.getElementById('password').value;
-
-            if (user === 'admin' && pass === 'adminpass') {
-                role = 'admin';
-                document.getElementById('admin-tab').style.display = 'block';
-                document.getElementById('userBadge').innerText = 'Admin';
-                accessGranted();
-            } else if (user === 'Aesa' && pass === 'Salvadores') {
-                if (!licenciaValida()) {
-                    showAlert('LICENCIA EXPIRADA - Contacte al proveedor', 'danger');
-                    return;
+// ====== AGRUPACIÓN INTELIGENTE 100% AUTOMÁTICA ======
+function detectarGrupos(rutas) {
+    const grupos = {};
+    rutas.forEach(ruta => {
+        let clave = '';
+        for (let i = 0; i < ruta.length; i++) {
+            clave += ruta[i];
+            const coincidencias = rutas.filter(r => r.startsWith(clave));
+            if (coincidencias.length > 1) {
+                // Hay más de una ruta que comparte este prefijo
+                if (!grupos[clave] || grupos[clave].length < coincidencias.length) {
+                    grupos[clave] = coincidencias;
                 }
-                role = 'normal';
-                document.getElementById('userBadge').innerText = 'Cliente Aesa';
-                accessGranted();
-            } else {
-                showAlert('Credenciales incorrectas', 'danger');
             }
         }
-
-        function accessGranted() {
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            initTables();
+        // Si no entró en ningún grupo, queda como individual
+        if (!Object.values(grupos).flat().includes(ruta)) {
+            grupos[ruta] = [ruta];
         }
+    });
+    return grupos; // { "1RDCLD": ["1RDCLD1165", "1RDCLD1166"], "SUR": ["SUR101", "SUR102"], ... }
+}
 
-        function initTables() {
-            ptosHot = new Handsontable(document.getElementById('ptos-table'), {
-                data: [['Dirección','Punto de recolección','Mobiliario urbano','Tipo','Tag','Rutas','Total','Pendientes','Promedio','Servicios','No Op','Cumplimiento','Latitud','Longitud','Unidad','Inicio','Fin']],
-                rowHeaders: true, colHeaders: true, height: 520,
-                licenseKey: 'non-commercial-and-evaluation',
-                minRows: 30, minCols: 17,
-                contextMenu: true,
-                manualColumnResize: true
+// ====== FORMATO GPS CORRECTO ======
+function formatCoord(num, digits) {
+    const sign = num < 0 ? '-' : '';
+    const str = Math.abs(num).toFixed(6).replace('.', '');
+    return sign + str.padEnd(digits, '0').substring(0, digits);
+}
+
+// ====== PROCESAMIENTO ======
+document.getElementById('btnProcess').addEventListener('click', async () => {
+    if (processing) return;
+    processing = true;
+    document.getElementById('btnProcess').disabled = true;
+    document.getElementById('statusText').textContent = 'Analizando rutas...';
+    generatedData = [];
+
+    try {
+        const allData = ptosHot.getData();
+        const data = allData.slice(1).filter(r => r[0] && r[0].toString().trim());
+        if (data.length === 0) throw new Error('No hay datos en la tabla');
+
+        const rutasUnicas = new Set();
+        data.forEach(row => {
+            if (row[5]) {
+                row[5].toString().split(',').map(x => x.trim()).filter(x => x).forEach(r => rutasUnicas.add(r));
+            }
+        });
+
+        if (rutasUnicas.size === 0) throw new Error('No se detectaron rutas en la columna "Rutas"');
+
+        const grupos = detectarGrupos(Array.from(rutasUnicas));
+        const configPorRuta = {};
+        const modal = new bootstrap.Modal(document.getElementById('routeModal'));
+
+        for (const [prefijo, rutasGrupo] of Object.entries(grupos)) {
+            document.getElementById('groupDisplay').textContent = `${prefijo} → ${rutasGrupo.length} punto${rutasGrupo.length > 1 ? 's' : ''}`;
+            document.getElementById('modalTitle').textContent = `Configurar: ${prefijo}`;
+            document.getElementById('routeForm').reset();
+
+            // Fechas por defecto
+            const ayer = new Date(); ayer.setDate(ayer.getDate() - 1);
+            document.getElementById('fechaInicio').value = ayer.toISOString().split('T')[0];
+            document.getElementById('fechaFin').value = new Date().toISOString('T').split('T')[0];
+
+            const config = await new Promise(resolve => {
+                const handler = () => {
+                    const u = document.getElementById('unidad').value.trim();
+                    const fi = document.getElementById('fechaInicio').value;
+                    const ff = document.getElementById('fechaFin').value;
+                    const hi = document.getElementById('inicioHora').value;
+                    const hf = document.getElementById('finHora').value;
+                    if (u && fi && ff && hi && hf) {
+                        modal.hide();
+                        document.getElementById('submitRoute').removeEventListener('click', handler);
+                        resolve({ unidad: u, inicio: `${fi} ${hi}`, fin: `${ff} ${hf}` });
+                    } else {
+                        alert('Completa todos los campos');
+                    }
+                };
+                document.getElementById('submitRoute').onclick = handler;
+                modal.show();
             });
 
-            if (role === 'admin') {
-                const saved = JSON.parse(localStorage.getItem('baseData') || 'null') || baseData;
-                baseHot = new Handsontable(document.getElementById('base-table'), {
-                    data: saved, rowHeaders: true, colHeaders: true, height: 520,
-                    licenseKey: 'non-commercial-and-evaluation',
-                    minRows: 20
-                });
-            }
+            rutasGrupo.forEach(r => configPorRuta[r] = config);
         }
 
-        function saveBase() {
-            if (role !== 'admin') return;
-            localStorage.setItem('baseData', JSON.stringify(baseHot.getData()));
-            showAlert('Base de datos guardada', 'success');
-        }
+        // Generar comandos
+        const baseData = JSON.parse(localStorage.getItem('baseData') || '[]');
+        let output = '';
 
-        // --- FORMATEO COORDENADAS ---
-        function formatCoord(coord, digits) {
-            const sign = coord < 0 ? '-' : '';
-            const str = Math.abs(coord).toFixed(6).replace('.', '');
-            return sign + str.padEnd(digits, '0').substring(0, digits);
-        }
+        data.forEach((row, i) => {
+            const rowIndex = i + 1;
+            const lat = parseFloat(row[12]);
+            const lon = parseFloat(row[13]);
+            if (isNaN(lat) || isNaN(lon)) return;
 
-        // --- PROCESAMIENTO PRINCIPAL ---
-        document.getElementById('btnProcess').addEventListener('click', async function() {
-            if (processing) return;
-            processing = true;
-            this.disabled = true;
-            generatedData = [];
-            showLoading('Analizando datos...');
+            const rutasFila = row[5] ? row[5].toString().split(',').map(x => x.trim()) : [];
+            const config = rutasFila.map(r => configPorRuta[r]).find(c => c);
+            if (!config) return;
 
-            try {
-                const allData = ptosHot.getData();
-                const data = allData.slice(1).filter(r => r[0] && r[0].toString().trim() !== '');
+            const unidadRow = baseData.find(r => r[0] == config.unidad);
+            if (!unidadRow) throw new Error(`Unidad ${config.unidad} no encontrada en la base`);
 
-                if (data.length === 0) throw new Error('No hay datos válidos');
+            // Actualizar tabla
+            ptosHot.setDataAtCell(rowIndex, 14, config.unidad);
+            ptosHot.setDataAtCell(rowIndex, 15, config.inicio);
+            ptosHot.setDataAtCell(rowIndex, 16, config.fin);
+            ptosHot.setDataAtCell(rowIndex, 12, formatCoord(lat, 7));
+            ptosHot.setDataAtCell(rowIndex, 13, formatCoord(lon, 8));
 
-                const rutasSet = new Set();
-                data.forEach(r => {
-                    if (r[5]) r[5].toString().split(',').map(x => x.trim()).filter(x => x).forEach(x => rutasSet.add(x));
-                });
-                const rutas = Array.from(rutasSet);
-                if (rutas.length === 0) throw new Error('No se detectaron rutas');
+            // Generar comando
+            const m1 = moment(config.inicio);
+            const m2 = moment(config.fin);
+            const mins = m2.diff(m1, 'minutes');
+            const randomMin = Math.floor(Math.random() * Math.max(1, mins));
+            const hora = m1.clone().add(randomMin, 'minutes').add(3, 'hours');
 
-                hideLoading();
-
-                // Pedir configuración (una sola vez si el usuario quiere)
-                let routeConfig = null;
-                const modal = new bootstrap.Modal(document.getElementById('routeModal'));
-                const usarMismaParaTodas = rutas.length > 1 ? confirm(`Se detectaron ${rutas.length} rutas diferentes.\n¿Usar la MISMA unidad y horario para TODAS?`) : true;
-
-                if (usarMismaParaTodas) {
-                    routeConfig = await new Promise(resolve => {
-                        document.getElementById('routeModalLabel').innerText = 'Configuración (aplicará a todas las rutas)';
-                        document.getElementById('fechaInicio').value = new Date(Date.now() - 86400000).toISOString().split('T')[0];
-                        document.getElementById('fechaFin').value = new Date().toISOString().split('T')[0];
-                        const handler = () => {
-                            const u = document.getElementById('unidad').value.trim();
-                            const d1 = document.getElementById('fechaInicio').value;
-                            const d2 = document.getElementById('fechaFin').value;
-                            const t1 = document.getElementById('inicioHora').value;
-                            const t2 = document.getElementById('finHora').value;
-                            if (u && d1 && d2 && t1 && t2) {
-                                modal.hide();
-                                document.getElementById('submitRoute').removeEventListener('click', handler);
-                                resolve({ unidad: u, inicio: `${d1} ${t1}`, fin: `${d2} ${t2}` });
-                            } else {
-                                alert('Completa todos los campos');
-                            }
-                        };
-                        document.getElementById('submitRoute').onclick = handler;
-                        modal.show();
-                    });
-                }
-
-                showLoading('Generando comandos...');
-                const base = JSON.parse(localStorage.getItem('baseData') || '[]');
-                let output = '';
-
-                data.forEach((row, i) => {
-                    const rowIndex = i + 1; // +1 por encabezado
-
-                    const lat = parseFloat(row[12]);
-                    const lon = parseFloat(row[13]);
-                    if (isNaN(lat) || isNaN(lon) || lat === 0 || lon === 0) return;
-
-                    const rutasRow = row[5] ? row[5].toString().split(',').map(x => x.trim()) : [];
-                    let config = routeConfig;
-                    if (!usarMismaParaTodas) {
-                        // Aquí podrías pedir por ruta individual si quisieras (no implementado por simplicidad)
-                        config = routeConfig;
-                    }
-
-                    if (!config) return;
-
-                    const unidad = config.unidad;
-                    const uRow = base.find(r => r[0] == unidad);
-                    if (!uRow) throw new Error(`Unidad ${unidad} no encontrada en la base de datos`);
-
-                    const imei = uRow[1];
-                    const id = uRow[2];
-
-                    // Actualizar tabla
-                    ptosHot.setDataAtCell(rowIndex, 14, unidad);
-                    ptosHot.setDataAtCell(rowIndex, 15, config.inicio);
-                    ptosHot.setDataAtCell(rowIndex, 16, config.fin);
-
-                    // Formatear coordenadas
-                    const procLat = formatCoord(lat, 7);
-                    const procLong = formatCoord(lon, 8);
-                    ptosHot.setDataAtCell(rowIndex, 12, procLat);
-                    ptosHot.setDataAtCell(rowIndex, 13, procLong);
-
-                    // Hora aleatoria dentro del rango + 3hs
-                    const m1 = moment(config.inicio);
-                    const m2 = moment(config.fin);
-                    const minutosDiff = m2.diff(m1, 'minutes');
-                    const minutosRandom = Math.floor(Math.random() * Math.max(1, minutosDiff));
-                    const horaFinal = m1.clone().add(minutosRandom, 'minutes').add(3, 'hours');
-
-                    const linea = `>RUS03,${horaFinal.format('DDMMYYHHmmss')}${procLat}${procLong}2929900000734261011,${imei},0000000${row[4]||'0'},001;ID=${id};#IP1:000C;*07<`;
-                    generatedData.push(linea);
-                    output += linea + '\n';
-                });
-
-                ptosHot.render();
-                document.getElementById('output').style.display = 'block';
-                document.getElementById('output').innerText = output;
-                document.getElementById('btnSend').disabled = false;
-                document.getElementById('btnCopy').style.display = 'inline-block';
-                document.getElementById('agentStatus').innerHTML = 'Listo para enviar';
-                showAlert(`Listo! ${generatedData.length} comandos generados`, 'success');
-            } catch (e) {
-                showAlert('Error: ' + e.message, 'danger');
-            } finally {
-                processing = false;
-                document.getElementById('btnProcess').disabled = false;
-                hideLoading();
-            }
+            const linea = `>RUS03,${hora.format('DDMMYYHHmmss')}${formatCoord(lat,7)}${formatCoord(lon,8)}2929900000734261011,${unidadRow[1]},0000000${row[4]||'0'},001;ID=${unidadRow[2]};#IP1:000C;*07<`;
+            generatedData.push(linea);
+            output += linea + '\n';
         });
 
-        // Copiar al portapapeles
-        document.getElementById('btnCopy').addEventListener('click', () => {
-            navigator.clipboard.writeText(document.getElementById('output').innerText);
-            showAlert('Copiado al portapapeles', 'success');
-        });
+        ptosHot.render();
+        document.getElementById('output').style.display = 'block';
+        document.getElementById('output').textContent = output || 'No se generaron comandos';
+        document.getElementById('btnCopy').style.display = 'inline-block';
+        document.getElementById('statusText').textContent = `${generatedData.length} comandos generados`;
 
-        // Enviar
-        document.getElementById('btnSend').addEventListener('click', sendToLocalAgent);
-    </script>
+        alert(`¡Listo! Se generaron ${generatedData.length} comandos`);
+    } catch (e) {
+        alert('Error: ' + e.message);
+    } finally {
+        processing = false;
+        document.getElementById('btnProcess').disabled = false;
+    }
+});
+
+// Copiar al portapapeles
+document.getElementById('btnCopy').addEventListener('click', () => {
+    navigator.clipboard.writeText(document.getElementById('output').textContent);
+    alert('¡Copiado al portapapeles!');
+});
+</script>
 </body>
 </html>
