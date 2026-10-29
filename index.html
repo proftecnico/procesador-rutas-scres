@@ -4,40 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scres© - Procesador de Rutas</title>
+    <title>SCRES PRO 2.0 — Procesador de Rutas</title>
     <link rel="icon" href="logo.jpg" type="image/jpeg">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
-    <!-- Libraries -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable@12.0.0/dist/handsontable.full.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <style>
         :root {
-            /* Palette: Modern HSL */
             --primary: 220, 90%, 56%;
-            /* #3b82f6 - Blue */
             --secondary: 217, 33%, 17%;
-            /* #1e293b - Slate 800 */
             --accent: 25, 95%, 53%;
-            /* #f97316 - Orange */
             --success: 150, 80%, 40%;
-            /* #10b981 - Green */
             --danger: 340, 80%, 60%;
-            /* #f43f5e - Rose */
-
             --bg-1: #0f172a;
             --bg-2: #1e293b;
-
-            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-bg: rgba(255, 255, 255, 0.98);
             --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
         }
 
         body {
@@ -45,11 +36,11 @@
             background: radial-gradient(circle at 10% 20%, rgb(15, 23, 42) 0%, rgb(30, 41, 59) 90%);
             min-height: 100vh;
             color: #ecf0f1;
-            padding: 20px;
+            padding: 16px;
         }
 
         .main-container {
-            max-width: 1440px;
+            max-width: 1500px;
             margin: 0 auto;
             border-radius: 24px;
             background: var(--glass-bg);
@@ -57,21 +48,25 @@
             box-shadow: var(--glass-shadow);
             overflow: hidden;
             color: #334155;
-            min-height: 85vh;
+            min-height: 88vh;
             display: flex;
             flex-direction: column;
-            animation: fadeIn 0.8s ease;
+            animation: fadeIn 0.5s ease;
         }
 
-        /* Login Section */
         #login-screen {
-            flex: 1;
+            min-height: 88vh;
+            max-width: 1500px;
+            margin: 0 auto;
+            border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, rgba(30, 41, 59, 1) 0%, rgba(15, 23, 42, 1) 100%);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--glass-shadow);
         }
 
         .login-card {
@@ -80,7 +75,7 @@
             -webkit-backdrop-filter: blur(20px);
             padding: 3rem;
             border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             width: 100%;
             max-width: 420px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -90,34 +85,54 @@
 
         .brand-logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.5rem;
-            background: linear-gradient(to right, #60a5fa, #f97316);
+            font-size: 2.85rem;
+            line-height: 1.1;
+            background: linear-gradient(110deg, #60a5fa, #a78bfa 45%, #f97316);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.35rem;
             font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-version {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            padding: 3px 10px;
+            border-radius: 50px;
+            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.12);
+            border: 1px solid rgba(251, 191, 36, 0.35);
+        }
+
+        .letter-spacing-2 {
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
         }
 
         .login-input {
-            background: rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: white;
             border-radius: 12px;
             padding: 12px 16px;
         }
 
         .login-input:focus {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.35);
             border-color: #60a5fa;
             color: white;
-            box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.1);
+            box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15);
         }
 
-        /* App Layout */
         .app-header {
-            background: linear-gradient(to right, #1e293b, #0f172a);
+            background: linear-gradient(110deg, #1e293b 0%, #0f172a 55%, #172554 100%);
             color: white;
-            padding: 1.5rem 2rem;
+            padding: 1.2rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -127,65 +142,111 @@
         .user-profile {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: rgba(255, 255, 255, 0.1);
             padding: 6px 16px;
             border-radius: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .drive-pill {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(16, 185, 129, 0.15);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            padding: 5px 13px;
+            border-radius: 50px;
+            font-size: 0.76rem;
+            font-weight: 500;
         }
 
         .nav-tabs {
-            padding: 0 2rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            background: #f8fafc;
-            padding-top: 1rem;
+            padding: 0.75rem 2rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            background: #f1f5f9;
+            gap: 6px;
         }
 
         .nav-link {
             border: none !important;
-            padding: 10px 24px;
-            font-weight: 500;
+            padding: 10px 22px;
+            font-weight: 600;
+            font-size: 0.9rem;
             color: #64748b;
-            border-radius: 8px 8px 0 0 !important;
+            border-radius: 10px 10px 0 0 !important;
             transition: all 0.2s;
         }
 
         .nav-link:hover {
-            color: #3b82f6;
-            background: #f1f5f9;
+            color: #2563eb;
+            background: #e2e8f0;
         }
 
         .nav-link.active {
-            color: #3b82f6 !important;
+            color: #2563eb !important;
             background: white !important;
-            font-weight: 600;
-            box-shadow: 0 -4px 0 0 #3b82f6 inset;
+            box-shadow: 0 -3px 0 0 #2563eb inset;
         }
 
-        /* Content Area */
         .app-content {
-            padding: 2rem;
+            padding: 1.5rem 2rem;
             background: white;
             flex: 1;
         }
 
-        .action-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 1.5rem;
-            height: 100%;
-            transition: transform 0.2s;
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
         }
 
-        .action-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+        .kpi-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .kpi-box .num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .kpi-box .lbl {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .action-card {
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+        }
+
+        .section-title {
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #64748b;
         }
 
         .btn-modern {
             border: none;
-            padding: 12px 24px;
+            padding: 11px 20px;
             border-radius: 12px;
             font-weight: 600;
             transition: all 0.2s;
@@ -201,7 +262,7 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
 
-        .btn-primary-modern:hover {
+        .btn-primary-modern:hover:not(:disabled) {
             transform: translateY(-1px);
             box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
             color: white;
@@ -213,27 +274,33 @@
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
+        .btn-success-modern:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+            color: white;
+        }
+
         .btn-dark-modern {
             background: linear-gradient(135deg, #334155, #1e293b);
             color: white;
             box-shadow: 0 4px 12px rgba(30, 41, 59, 0.3);
         }
 
-        /* Console */
         .console-output {
             background: #0f172a;
             color: #4ade80;
             font-family: 'Consolas', 'Monaco', monospace;
-            padding: 1.5rem;
-            border-radius: 16px;
-            height: 200px;
+            padding: 1rem;
+            border-radius: 14px;
+            height: 210px;
             overflow-y: auto;
             border: 1px solid #334155;
-            font-size: 0.9rem;
+            font-size: 0.82rem;
+            line-height: 1.45;
+            white-space: pre-wrap;
             box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
-        /* Helpers */
         .badge-status {
             width: 10px;
             height: 10px;
@@ -256,31 +323,52 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* FIX CRÍTICO: Fuerza la altura de las tablas */
+        /* Cuadrícula Handsontable idéntica a la versión que funcionaba */
         #ptos-table,
-        #base-table {
+        #base-table,
+        #sensado-table {
             height: 500px !important;
             width: 100%;
             min-height: 500px;
             display: block;
             background: white;
-            /* Para que resalte sobre el fondo oscuro */
             z-index: 1;
+        }
+
+        /* Resaltar encabezados de la fila 1 de la tabla */
+        .handsontable tbody tr:first-child td {
+            background-color: #f1f5f9;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .modal-content {
+            color: #334155;
+        }
+
+        .modal-content .form-check-label,
+        .modal-content .form-label,
+        .modal-content .small,
+        .modal-content small {
+            color: #475569;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- Loading Spinner -->
+    <!-- Contenedor de Alertas Flotantes -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 10000;" id="toastContainer"></div>
+
+    <!-- Pantalla de Carga -->
     <div id="loading" class="loading-overlay" style="display: none;">
         <div class="text-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status"></div>
@@ -288,34 +376,30 @@
         </div>
     </div>
 
-    <!-- Login Screen -->
+    <!-- ============================================================ -->
+    <!-- LOGIN                                                        -->
+    <!-- ============================================================ -->
     <div id="login-screen">
-        <!-- Floating shapes for bg effect -->
-        <div
-            style="position: absolute; width: 300px; height: 300px; background: #3b82f6; filter: blur(120px); opacity: 0.2; top: -50px; right: -50px; border-radius: 50%;">
-        </div>
-        <div
-            style="position: absolute; width: 400px; height: 400px; background: #f97316; filter: blur(140px); opacity: 0.15; bottom: -100px; left: -100px; border-radius: 50%;">
-        </div>
+        <div style="position: absolute; width: 300px; height: 300px; background: #3b82f6; filter: blur(120px); opacity: 0.2; top: -50px; right: -50px; border-radius: 50%;"></div>
+        <div style="position: absolute; width: 400px; height: 400px; background: #f97316; filter: blur(140px); opacity: 0.15; bottom: -100px; left: -100px; border-radius: 50%;"></div>
 
         <div class="login-card animate__animated animate__zoomIn">
             <div class="mb-4">
                 <div class="brand-logo">SCRES</div>
-                <div class="text-white-50 small letter-spacing-2">SYSTEM CONTROL & ROUTING</div>
+                <div class="brand-version mb-2">PRO 2.0</div>
+                <div class="text-white-50 small letter-spacing-2">System Control &amp; Routing</div>
             </div>
 
             <form id="loginForm" onsubmit="handleLogin(event)">
                 <div class="mb-3 text-start">
                     <label class="form-label text-white-50 small ms-1">Email</label>
-                    <input type="email" class="form-control login-input" id="email" placeholder="usuario@ejemplo.com"
-                        required>
+                    <input type="email" class="form-control login-input" id="email" placeholder="usuario@ejemplo.com" required>
                 </div>
                 <div class="mb-4 text-start">
                     <label class="form-label text-white-50 small ms-1">Contraseña</label>
-                    <input type="password" class="form-control login-input" id="password" placeholder="••••••••"
-                        required>
+                    <input type="password" class="form-control login-input" id="password" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn btn-primary-modern w-100 py-3">INICIAR SESIÓN</button>
+                <button type="submit" class="btn btn-modern btn-primary-modern w-100 py-3">INICIAR SESIÓN</button>
             </form>
 
             <div class="mt-4 pt-3 border-top border-secondary">
@@ -324,50 +408,112 @@
         </div>
     </div>
 
-    <!-- Main App -->
+    <!-- ============================================================ -->
+    <!-- CONTENEDOR PRINCIPAL DE LA APP                               -->
+    <!-- ============================================================ -->
     <div class="main-container" id="main-app" style="display: none;">
         <div class="app-header">
-            <div>
-                <div class="d-flex align-items-center gap-2">
-                    <span class="fs-4 fw-bold text-white">SCRES</span>
-                    <span class="badge bg-warning text-dark rounded-pill px-2">PRO 2.0</span>
-                </div>
-                <small class="text-white-50">Procesador de Rutas Urbanas</small>
-            </div>
             <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-sm btn-outline-light rounded-pill" onclick="logout()">Cerrar Sesión</button>
+                <div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="fs-4 fw-bold text-white" style="font-family: 'Space Grotesk', sans-serif;">SCRES</span>
+                        <span class="brand-version">PRO 2.0</span>
+                    </div>
+                    <small class="text-white-50">Procesador de Rutas Urbanas</small>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+                <div class="drive-pill" title="Los eventos se guardan automáticamente en tu Google Drive">
+                    <span class="badge-status status-connected"></span>
+                    <span>Log Drive Activo</span>
+                </div>
                 <div class="user-profile">
                     <div class="badge-status status-connected"></div>
                     <span id="userEmailDisplay" class="small">usuario@scres.com</span>
                 </div>
+                <button class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="logout()">Cerrar Sesión</button>
             </div>
         </div>
 
-        <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link active" href="#ptos" data-bs-toggle="tab">Puntos de Ruta</a></li>
-            <li class="nav-item" id="admin-tab" style="display: none;"><a class="nav-link" href="#base"
-                    data-bs-toggle="tab">Base de Datos (Firestore)</a></li>
+        <ul class="nav nav-tabs" id="mainTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="tab-ptos" href="#ptos" data-bs-toggle="tab" role="tab">
+                    <i class="bi bi-geo-alt-fill me-1"></i> Puntos de Ruta
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="tab-sensado" href="#sensado" data-bs-toggle="tab" role="tab">
+                    <i class="bi bi-lightning-charge-fill me-1"></i> Sensado
+                </a>
+            </li>
+            <li class="nav-item" id="admin-tab" style="display: none;" role="presentation">
+                <a class="nav-link" id="tab-base" href="#base" data-bs-toggle="tab" role="tab">
+                    <i class="bi bi-database-fill-gear me-1"></i> Base de Datos (Firestore)
+                </a>
+            </li>
+            <li class="nav-item" id="logs-tab" style="display: none;" role="presentation">
+                <a class="nav-link" id="tab-auditoria" href="#auditoria" data-bs-toggle="tab" role="tab" onclick="loadLogsFromFirestore()">
+                    <i class="bi bi-journal-check me-1"></i> Auditoría / Drive Logs
+                </a>
+            </li>
         </ul>
 
         <div class="app-content">
-            <div class="tab-content h-100">
+            <div class="tab-content">
 
-                <!-- TAB 1: Process -->
-                <div class="tab-pane active h-100" id="ptos">
-                    <div class="row h-100 g-4">
+                <!-- ============================================================ -->
+                <!-- TAB 1: Puntos de Ruta (RUS03 + RUS04)                         -->
+                <!-- ============================================================ -->
+                <div class="tab-pane fade show active" id="ptos" role="tabpanel">
+                    <div class="kpi-strip">
+                        <div class="kpi-box">
+                            <div>
+                                <div class="lbl">Filas Procesadas</div>
+                                <div class="num" id="kpiFilas">0</div>
+                            </div>
+                            <i class="bi bi-table fs-3 text-primary opacity-75"></i>
+                        </div>
+                        <div class="kpi-box">
+                            <div>
+                                <div class="lbl">Tramas RUS03 (RFID)</div>
+                                <div class="num" id="kpiRus03">0</div>
+                            </div>
+                            <i class="bi bi-upc-scan fs-3 text-success opacity-75"></i>
+                        </div>
+                        <div class="kpi-box">
+                            <div>
+                                <div class="lbl">Tramas RUS04 (Sensado)</div>
+                                <div class="num" id="kpiRus04">0</div>
+                            </div>
+                            <i class="bi bi-lightning-charge fs-3 text-warning opacity-75"></i>
+                        </div>
+                        <div class="kpi-box">
+                            <div>
+                                <div class="lbl">Total Tramas Listas</div>
+                                <div class="num" id="kpiTotal">0</div>
+                            </div>
+                            <i class="bi bi-send-check fs-3 text-info opacity-75"></i>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
                         <div class="col-lg-9 d-flex flex-column">
                             <div class="bg-light border rounded-3 overflow-hidden flex-grow-1 shadow-sm">
-                                <div id="ptos-table" style="height: 100%; width: 100%;"></div>
+                                <div id="ptos-table"></div>
                             </div>
                         </div>
 
                         <div class="col-lg-3 d-flex flex-column gap-3">
                             <div class="action-card">
-                                <h6 class="text-uppercase fw-bold text-muted mb-3" style="font-size: 0.75rem;">Acciones
-                                </h6>
-                                <button class="btn btn-success-modern w-100 mb-2" onclick="processData()">
-                                    <span>⚡ Procesar Datos</span>
+                                <h6 class="section-title mb-3">Acciones</h6>
+                                <button class="btn btn-modern btn-success-modern w-100 mb-2" onclick="verificarDatos()">
+                                    <span>🔎 Verificar y Generar</span>
                                 </button>
+                                <button class="btn btn-outline-secondary btn-sm w-100 mb-2" onclick="limpiarPtos()">
+                                    Limpiar tabla
+                                </button>
+
                                 <hr class="my-3">
 
                                 <div class="mb-3">
@@ -375,10 +521,8 @@
                                         <small class="fw-bold">Arduino / USB</small>
                                         <span class="badge-status status-disconnected" id="usbDot"></span>
                                     </div>
-                                    <button class="btn btn-outline-secondary btn-sm w-100 mb-2"
-                                        onclick="connectArduino()">Conectar USB</button>
-                                    <button class="btn btn-primary-modern btn-sm w-100" id="btnSendArduino"
-                                        onclick="sendToArduino()" disabled>Enviar a Arduino</button>
+                                    <button class="btn btn-outline-secondary btn-sm w-100 mb-2" onclick="connectArduino()">Conectar USB</button>
+                                    <button class="btn btn-modern btn-primary-modern btn-sm w-100" id="btnSendArduino" onclick="sendToArduino()" disabled>Enviar a Arduino</button>
                                 </div>
 
                                 <div class="mb-0">
@@ -386,36 +530,135 @@
                                         <small class="fw-bold">Agente Local</small>
                                         <span id="agentStatus" class="small text-muted">Offline</span>
                                     </div>
-                                    <button class="btn btn-dark-modern btn-sm w-100" id="btnSendAgent"
-                                        onclick="sendToLocalAgent()" disabled>Enviar Script</button>
+                                    <button class="btn btn-modern btn-dark-modern btn-sm w-100" id="btnSendAgent" onclick="sendToLocalAgent()" disabled>Enviar Script</button>
                                 </div>
                             </div>
 
-                            <div class="console-output flex-grow-1" id="output">
-                                <div class="text-muted opacity-50">Esperando procesamiento...</div>
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-1 px-1">
+                                    <small class="fw-bold text-muted">Consola de Tramas</small>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-link p-0 text-decoration-none" onclick="copiarTramas('ptos')">📋 Copiar</button>
+                                        <button class="btn btn-sm btn-link p-0 text-decoration-none" onclick="descargarTramas('ptos')">💾 .TXT</button>
+                                    </div>
+                                </div>
+                                <div class="console-output" id="output">Esperando procesamiento...</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- TAB 2: Database -->
-                <div class="tab-pane h-100" id="base">
-                    <div class="d-flex flex-column h-100">
+                <!-- ============================================================ -->
+                <!-- TAB 2: Sensado (solo RUS04)                                   -->
+                <!-- ============================================================ -->
+                <div class="tab-pane fade" id="sensado" role="tabpanel">
+                    <div class="row g-4">
+                        <div class="col-lg-9 d-flex flex-column">
+                            <div class="bg-light border rounded-3 overflow-hidden flex-grow-1 shadow-sm">
+                                <div id="sensado-table"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 d-flex flex-column gap-3">
+                            <div class="action-card">
+                                <h6 class="section-title mb-3">Sensado de Trabajo</h6>
+                                <p class="small text-muted mb-3">
+                                    Pegá las filas con RFID y se generarán solo los Sensados para enviar.
+                                </p>
+                                <button class="btn btn-modern btn-success-modern w-100 mb-2" onclick="generarRus04()">
+                                    <span>⚡ Generar RUS04</span>
+                                </button>
+                                <button class="btn btn-outline-secondary btn-sm w-100 mb-3" onclick="limpiarSensado()">Limpiar tabla</button>
+
+                                <hr class="my-3">
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <small class="fw-bold">Arduino / USB</small>
+                                        <span class="badge-status status-disconnected" id="usbDotSensado"></span>
+                                    </div>
+                                    <button class="btn btn-outline-secondary btn-sm w-100 mb-2" onclick="connectArduinoSensado()">Conectar USB</button>
+                                    <button class="btn btn-modern btn-primary-modern btn-sm w-100" id="btnSendArduinoSensado" onclick="sendToArduinoSensado()" disabled>Enviar a Arduino</button>
+                                </div>
+
+                                <div class="mb-0">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <small class="fw-bold">Agente Local</small>
+                                        <span id="agentStatusSensado" class="small text-muted">Offline</span>
+                                    </div>
+                                    <button class="btn btn-modern btn-dark-modern btn-sm w-100" id="btnSendAgentSensado" onclick="sendToLocalAgentSensado()" disabled>Enviar Script</button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center mb-1 px-1">
+                                    <small class="fw-bold text-muted">Consola RUS04</small>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-sm btn-link p-0 text-decoration-none" onclick="copiarTramas('sensado')">📋 Copiar</button>
+                                        <button class="btn btn-sm btn-link p-0 text-decoration-none" onclick="descargarTramas('sensado')">💾 .TXT</button>
+                                    </div>
+                                </div>
+                                <div class="console-output" id="outputSensado">Esperando procesamiento...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- TAB 3: Base de Datos (admin)                                   -->
+                <!-- ============================================================ -->
+                <div class="tab-pane fade" id="base" role="tabpanel">
+                    <div class="d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start mb-3">
                             <div>
                                 <h4 class="mb-1">Base de Datos de Unidades</h4>
                                 <p class="text-muted small mb-0">Sincronizado con Firebase Firestore Cloud</p>
                             </div>
                             <div class="d-flex gap-2">
-                                <button class="btn btn-outline-danger btn-sm" onclick="migrateDataToFirebase()">⚠️
-                                    Migrar Local a Nube</button>
-                                <button class="btn btn-primary-modern" onclick="saveUnidadesToFirestore()">💾 Guardar
-                                    Cambios en Nube</button>
+                                <button class="btn btn-outline-danger btn-sm" onclick="migrateDataToFirebase()">⚠️ Migrar Local a Nube</button>
+                                <button class="btn btn-modern btn-primary-modern" onclick="saveUnidadesToFirestore()">💾 Guardar Cambios en Nube</button>
                             </div>
                         </div>
                         <div class="bg-light border rounded-3 overflow-hidden flex-grow-1 shadow-sm">
-                            <div id="base-table" style="height: 100%; width: 100%;"></div>
+                            <div id="base-table"></div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- ============================================================ -->
+                <!-- TAB 4: Auditoría Drive (admin)                                 -->
+                <!-- ============================================================ -->
+                <div class="tab-pane fade" id="auditoria" role="tabpanel">
+                    <div class="d-flex justify-content-between align-items-center mb-3 p-3 bg-light rounded-3 border">
+                        <div>
+                            <h5 class="mb-1 fw-bold">Registro de Uso en Google Drive y Firestore</h5>
+                            <small class="text-muted">Destino activo: <code>https://script.google.com/macros/s/AKfycby-o8DaR17a.../exec</code></small>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-success btn-sm" onclick="probarLogDrive()">🧪 Enviar Log de Prueba a Drive</button>
+                            <button class="btn btn-dark btn-sm" onclick="loadLogsFromFirestore()">🔄 Actualizar Tabla</button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive border rounded-3" style="max-height: 460px; overflow-y: auto;">
+                        <table class="table table-striped table-hover align-middle small mb-0">
+                            <thead class="table-dark sticky-top">
+                                <tr>
+                                    <th>Fecha y Hora</th>
+                                    <th>Usuario</th>
+                                    <th>Módulo</th>
+                                    <th>Acción</th>
+                                    <th>Unidades</th>
+                                    <th>Cant.</th>
+                                    <th>Datos Enviados</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logsTableBody">
+                                <tr>
+                                    <td colspan="7" class="text-center py-4 text-muted">Hacé clic en Actualizar Tabla para ver los registros...</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
@@ -423,73 +666,71 @@
         </div>
     </div>
 
-    <!-- Modal Ruta -->
+    <!-- Modal para completar datos faltantes -->
     <div class="modal fade" id="routeModal" tabindex="-1" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
                 <div class="modal-header border-0 bg-light rounded-top-4">
-                    <h5 class="modal-title fw-bold">⚙️ Configurar Ruta</h5>
+                    <h5 class="modal-title fw-bold">⚙️ Completar datos faltantes</h5>
                 </div>
                 <div class="modal-body p-4">
                     <form id="routeForm">
-                        <div class="mb-3">
+                        <div class="alert alert-warning py-2 small">
+                            Fila <span id="filaActualText" class="fw-bold">...</span>
+                            <div class="mt-1">Ruta: <span id="rutaActualText" class="fw-bold">...</span></div>
+                        </div>
+
+                        <div class="mb-3 d-none" id="unidadBlock">
                             <label class="form-label small fw-bold text-muted">UNIDAD ASIGNADA</label>
-                            <input type="text" class="form-control form-control-lg bg-light" id="unidad" required
-                                placeholder="Ej: 1024">
+                            <input type="text" class="form-control form-control-lg bg-light" id="unidad" placeholder="Ej: 1024">
                         </div>
-                        <div class="alert alert-info py-2 small">
-                            <i class="bi bi-info-circle"></i> Aplicando a: <span id="rutaActualText"
-                                class="fw-bold">...</span>
+
+                        <div class="alert alert-success py-2 small d-none" id="fechasDetectadas">
+                            📅 Fecha y hora tomada de la tabla: <span id="fechasDetectadasText" class="fw-bold"></span>
                         </div>
-                        <div class="row g-3">
-                            <div class="col-6">
-                                <label class="form-label small fw-bold text-muted">INICIO FECHA</label>
-                                <input type="date" class="form-control" id="fechaInicio" required>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label small fw-bold text-muted">FIN FECHA</label>
-                                <input type="date" class="form-control" id="fechaFin" required>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label small fw-bold text-muted">HORA PLANTA</label>
-                                <input type="time" class="form-control" id="inicioHora" required>
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label small fw-bold text-muted">HORA FINAL</label>
-                                <input type="time" class="form-control" id="finHora" required>
-                            </div>
+
+                        <div class="d-none" id="fechasBlock">
+                            <label class="form-label small fw-bold text-muted">FECHA Y HORA</label>
+                            <input type="datetime-local" class="form-control" id="fechaHora">
+                        </div>
+
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="aplicarRestantes" checked>
+                            <label class="form-check-label small" for="aplicarRestantes">
+                                Aplicar estos datos a las demás filas de esta ruta a las que les falte lo mismo
+                            </label>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer border-0 pt-0">
-                    <button type="button" class="btn btn-primary-modern w-100" id="submitRoute">CONFIRMAR
-                        CONFIGURACIÓN</button>
+                <div class="modal-footer border-0 pt-0 d-block">
+                    <button type="button" class="btn btn-modern btn-primary-modern w-100" id="submitRoute">CONFIRMAR</button>
+                    <button type="button" class="btn btn-link w-100 text-muted small mt-1" id="skipRoute">Omitir esta fila</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/handsontable@12.0.0/dist/handsontable.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
 
-    <!-- FIREBASE SETUP (Module) -->
+    <!-- ============================================================ -->
+    <!-- SCRIPT UNIFICADO (EVITA ERRORES DE ORDEN DE CARGA)            -->
+    <!-- ============================================================ -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-        import { getFirestore, collection, getDocs, doc, setDoc, writeBatch } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+        import { getFirestore, collection, getDocs, doc, setDoc, addDoc, writeBatch, query, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-        // ==========================================
-        // ⚠️ CONFIGURACIÓN DE FIREBASE
-        // ==========================================
+        // URL DE TU GOOGLE APPS SCRIPT
+        const GOOGLE_DRIVE_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycby-o8DaR17aAjd0ioZckoHZP3UaP-uV1ZJBrCR0GlYIDMIWFuU1lkyRGaed_K3squJ2ZA/exec";
+
         const firebaseConfig = {
-            // TODO: PEGAR AQUÍ TU CONFIGURACIÓN DE FIREBASE
             apiKey: "AIzaSyBVxsfxvhE3ZtkoG_CLWyhZai2QLtei2Es",
             authDomain: "scres-182f6.firebaseapp.com",
             databaseURL: "https://scres-182f6-default-rtdb.firebaseio.com",
             projectId: "scres-182f6",
-            storageBucket: "scres-182f6.firebasestorage.app", // Corrected bucket domain usually
+            storageBucket: "scres-182f6.firebasestorage.app",
             messagingSenderId: "824274971298",
             appId: "1:824274971298:web:8eff93c5c9b4c09d12c5fb",
             measurementId: "G-HSP0E7J954"
@@ -498,12 +739,233 @@
         let app, auth, db;
         let userData = null;
 
-        // Variables Globales App
         window.ptosHot = null;
         window.baseHot = null;
+        window.sensadoHot = null;
         window.generatedData = [];
+        window.generatedSensado = [];
+        window.lastUnidadesPtos = [];
+        window.lastUnidadesSensado = [];
         window.role = '';
 
+        // ------------------------------------------------------------
+        // FUNCIONES DE UI Y TABLAS (Declaradas antes de Firebase Auth)
+        // ------------------------------------------------------------
+        function showLoading(show, text = "Cargando...") {
+            const el = document.getElementById('loading');
+            if (!el) return;
+            document.getElementById('loadingText').innerText = text;
+            el.style.display = show ? 'flex' : 'none';
+        }
+        window.showLoading = showLoading;
+
+        function notify(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return alert(message);
+            const colors = {
+                success: 'bg-success text-white',
+                danger: 'bg-danger text-white',
+                warning: 'bg-warning text-dark',
+                info: 'bg-primary text-white'
+            };
+            const toastEl = document.createElement('div');
+            toastEl.className = `toast align-items-center border-0 ${colors[type] || colors.info} show mb-2 rounded-3 shadow`;
+            toastEl.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body fw-medium">${message}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" onclick="this.parentElement.parentElement.remove()"></button>
+                </div>
+            `;
+            container.appendChild(toastEl);
+            setTimeout(() => toastEl.remove(), 4500);
+        }
+        window.notify = notify;
+
+        function initTables() {
+            const container1 = document.getElementById('ptos-table');
+            const container2 = document.getElementById('base-table');
+            const container3 = document.getElementById('sensado-table');
+
+            if (!container1) return;
+
+            container1.innerHTML = '';
+            container2.innerHTML = '';
+            if (container3) container3.innerHTML = '';
+
+            window.ptosHot = new Handsontable(container1, {
+                data: [['Dirección', 'Punto de recolección', 'Mobiliario urbano', 'Tipo', 'Tag', 'Rutas', 'Total', 'Pendientes', 'Promedio', 'Servicios', 'No Op', 'Cumplimiento', 'Latitud', 'Longitud', 'Unidad', 'Fecha y hora']],
+                rowHeaders: true,
+                colHeaders: true,
+                height: 500,
+                width: '100%',
+                licenseKey: 'non-commercial-and-evaluation',
+                minRows: 50,
+                minCols: 16,
+                contextMenu: true,
+                manualColumnResize: true,
+                stretchH: 'all',
+                className: 'htCenter',
+            });
+
+            window.baseHot = new Handsontable(container2, {
+                data: [['Unidades', 'IMEI', 'ID', 'IMEI LENG', 'ID LENG', '', '', '']],
+                rowHeaders: true,
+                colHeaders: true,
+                height: 500,
+                width: '100%',
+                licenseKey: 'non-commercial-and-evaluation',
+                minRows: 50,
+                minCols: 9,
+                contextMenu: true,
+                manualColumnResize: true,
+                stretchH: 'all'
+            });
+
+            if (container3) {
+                window.sensadoHot = new Handsontable(container3, {
+                    data: [['Dirección', 'Punto de recolección', 'Mobiliario urbano', 'Tipo', 'Tag', 'Rutas', 'Total', 'Pendientes', 'Promedio', 'Servicios', 'No Op', 'Cumplimiento', 'Latitud', 'Longitud', 'Unidad', 'Fecha y hora']],
+                    rowHeaders: true,
+                    colHeaders: true,
+                    height: 500,
+                    width: '100%',
+                    licenseKey: 'non-commercial-and-evaluation',
+                    minRows: 50,
+                    minCols: 16,
+                    contextMenu: true,
+                    manualColumnResize: true,
+                    stretchH: 'all',
+                    className: 'htCenter',
+                });
+            }
+
+            refreshHotForTab('#ptos');
+        }
+        window.initTables = initTables;
+
+        function refreshHotForTab(target) {
+            setTimeout(() => {
+                try {
+                    if (target === '#ptos' && window.ptosHot) {
+                        window.ptosHot.refreshDimensions();
+                        window.ptosHot.render();
+                    } else if (target === '#sensado' && window.sensadoHot) {
+                        window.sensadoHot.refreshDimensions();
+                        window.sensadoHot.render();
+                    } else if (target === '#base' && window.baseHot) {
+                        window.baseHot.refreshDimensions();
+                        window.baseHot.render();
+                    }
+                } catch (e) {
+                    console.warn("Error refrescando Handsontable:", e);
+                }
+            }, 60);
+        }
+
+        document.addEventListener('shown.bs.tab', function (e) {
+            const target = e.target.getAttribute('href');
+            refreshHotForTab(target);
+        });
+
+        // ------------------------------------------------------------
+        // FUNCIÓN DE ENVÍO DE LOG A TU GOOGLE DRIVE Y FIRESTORE
+        // ------------------------------------------------------------
+        window.registrarLogDeUso = async ({ modulo, accion, tramas = [], unidades = [] }) => {
+            const fechaHora = moment().format('DD/MM/YYYY HH:mm:ss');
+            const timestampISO = new Date().toISOString();
+            const usuario = (userData && userData.email) ? userData.email : 'usuario_desconocido';
+
+            const payload = {
+                fechaHora: fechaHora,
+                timestamp: timestampISO,
+                usuario: usuario,
+                modulo: modulo,
+                accion: accion,
+                cantidad: tramas.length,
+                unidades: unidades,
+                tramas: tramas
+            };
+
+            // 1. Guardar en Firebase Firestore
+            if (db) {
+                try {
+                    await addDoc(collection(db, "logs_uso"), payload);
+                } catch (err) {
+                    console.warn("Error guardando log en Firestore:", err);
+                }
+            }
+
+            // 2. Enviar a tu Google Drive personal vía Apps Script
+            if (GOOGLE_DRIVE_WEBHOOK_URL) {
+                try {
+                    await fetch(GOOGLE_DRIVE_WEBHOOK_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify(payload)
+                    });
+                    console.log("✅ Log enviado a Google Drive");
+                } catch (err) {
+                    console.error("❌ Error enviando log a Google Drive:", err);
+                }
+            }
+        };
+
+        window.probarLogDrive = async () => {
+            notify("Enviando prueba a tu Google Drive...", "info");
+            await window.registrarLogDeUso({
+                modulo: "Auditoría",
+                accion: "Prueba de Control",
+                unidades: ["1016"],
+                tramas: [">RUS04,TEST_LOG_OK<"]
+            });
+            notify("✅ Prueba enviada. Verificá tu planilla en Google Drive.", "success");
+            window.loadLogsFromFirestore();
+        };
+
+        window.loadLogsFromFirestore = async () => {
+            if (!db || window.role !== 'admin') return;
+            const tbody = document.getElementById('logsTableBody');
+            if (!tbody) return;
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center py-3">Cargando registros...</td></tr>';
+
+            try {
+                const q = query(collection(db, "logs_uso"), orderBy("timestamp", "desc"), limit(50));
+                const snap = await getDocs(q);
+                if (snap.empty) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">Aún no hay registros guardados.</td></tr>';
+                    return;
+                }
+                let html = '';
+                snap.forEach(d => {
+                    const item = d.data();
+                    const tramasStr = Array.isArray(item.tramas) ? item.tramas.join('\n') : '';
+                    const unidadesStr = Array.isArray(item.unidades) ? item.unidades.join(', ') : '-';
+                    html += `
+                        <tr>
+                            <td class="text-nowrap fw-semibold">${item.fechaHora || '-'}</td>
+                            <td>${item.usuario || '-'}</td>
+                            <td>${item.modulo || '-'}</td>
+                            <td><span class="badge bg-primary">${item.accion || '-'}</span></td>
+                            <td>${unidadesStr}</td>
+                            <td class="fw-bold">${item.cantidad || 0}</td>
+                            <td>
+                                <details>
+                                    <summary class="text-primary" style="cursor:pointer;">Ver (${item.cantidad || 0})</summary>
+                                    <pre class="bg-dark text-success p-2 rounded mt-1 mb-0" style="font-size:0.72rem; max-height:110px; overflow:auto;">${tramasStr}</pre>
+                                </details>
+                            </td>
+                        </tr>
+                    `;
+                });
+                tbody.innerHTML = html;
+            } catch (e) {
+                tbody.innerHTML = `<tr><td colspan="7" class="text-danger text-center py-3">Error: ${e.message}</td></tr>`;
+            }
+        };
+
+        // ------------------------------------------------------------
+        // INICIALIZACIÓN DE FIREBASE
+        // ------------------------------------------------------------
         try {
             app = initializeApp(firebaseConfig);
             auth = getAuth(app);
@@ -511,12 +973,9 @@
             console.log("Firebase initialized");
         } catch (e) {
             console.error("Firebase init error", e);
-            alert("⚠️ Error iniciando Firebase: " + e.message + "\n\nPor favor edita el archivo index.html y coloca tus credenciales de Firebase.");
+            alert("⚠️ Error iniciando Firebase: " + e.message);
         }
 
-        // ==========================================
-        // AUTH
-        // ==========================================
         window.handleLogin = async (e) => {
             e.preventDefault();
             const email = document.getElementById('email').value;
@@ -525,19 +984,13 @@
             showLoading(true, "Autenticando...");
 
             try {
-                // Check if dummy config
-                if (firebaseConfig.apiKey === "API_KEY_AQUI") {
-                    throw new Error("Configuración de Firebase incompleta. Edita el código.");
-                }
                 await signInWithEmailAndPassword(auth, email, pass);
-                // Listener will handle UI switch
             } catch (error) {
                 showLoading(false);
                 alert("Error de Login: " + error.message);
 
-                // FALLBACK ONLY FOR DEV/DEMO if Firebase fails
                 if (email === 'admin@test.com' && pass === '123456') {
-                    alert("⚠️ MODO DEBUG OFFLINE ACTIVADO");
+                    userData = { email: email };
                     document.getElementById('login-screen').style.display = 'none';
                     document.getElementById('main-app').style.display = 'flex';
                     initTables();
@@ -556,13 +1009,11 @@
                 document.getElementById('main-app').style.display = 'flex';
                 document.getElementById('userEmailDisplay').textContent = user.email;
 
-                // Simple Admin Check by email domain or specific email
-                // En producción usar custom claims
-                // Check Admin by specific email or UID
                 const admins = ['jorgegaravagno@gmail.com'];
                 if (admins.includes(user.email) || user.uid === 'RbKjvuTv34OTW81kbTtX11bTe133') {
                     window.role = 'admin';
                     document.getElementById('admin-tab').style.display = 'block';
+                    document.getElementById('logs-tab').style.display = 'block';
                 }
 
                 initTables();
@@ -575,35 +1026,24 @@
             }
         });
 
-
-        // ==========================================
-        // FIRESTORE
-        // ==========================================
-
-        // Cargar Base de Datos
         window.loadUnidadesFromFirestore = async () => {
             if (!db) return;
             try {
-                console.log("Loading modules...");
                 const querySnapshot = await getDocs(collection(db, "unidades"));
                 const fireData = [];
                 querySnapshot.forEach((doc) => {
-                    fireData.push(doc.data().row); // Guardamos la fila entera como array
+                    fireData.push(doc.data().row);
                 });
 
                 if (fireData.length > 0) {
-                    // Headers
                     fireData.unshift(['Unidades', 'IMEI', 'ID', 'IMEI LENG', 'ID LENG', '', '', '']);
                     if (window.baseHot) window.baseHot.loadData(fireData);
-                } else {
-                    console.log("No data in Firestore, loading default...");
                 }
             } catch (e) {
                 console.error("Error loading DB", e);
             }
         };
 
-        // Guardar cambios
         window.saveUnidadesToFirestore = async () => {
             if (window.role !== 'admin') { alert("Solo admins"); return; }
             if (!db) return;
@@ -611,25 +1051,18 @@
             showLoading(true, "Guardando en nube...");
             try {
                 const data = window.baseHot.getData();
-                // Batch write logic can be complex for limits. 
-                // For simplicity, we overwrite documents using ID as key or just cleanup
-                // Since this is a simple table, we might just re-upload each row.
-
-                // Note: Real world app should handle batch limits (500).
                 const batch = writeBatch(db);
 
-                // Clear old or just overwrite. For simplicity assume overwrite by Unidad ID
                 data.forEach((row, index) => {
-                    if (index === 0) return; // Skip Header
+                    if (index === 0) return;
                     const unidadId = row[0];
                     if (!unidadId) return;
-
                     const docRef = doc(db, "unidades", String(unidadId));
                     batch.set(docRef, { row: row });
                 });
 
                 await batch.commit();
-                alert("✅ Datos guardados correctamente en Firebase!");
+                notify("✅ Datos guardados correctamente en Firebase!", "success");
             } catch (e) {
                 console.error(e);
                 alert("❌ Error guardando: " + e.message);
@@ -638,19 +1071,15 @@
             }
         };
 
-        // Migración Inicial
         window.migrateDataToFirebase = async () => {
-            if (!confirm("¿Seguro que quieres subir los datos locales a Firebase? Esto sobreescribirá datos existentes con el mismo ID.")) return;
-            // Get local data fallback
+            if (!confirm("¿Seguro que quieres subir los datos locales a Firebase?")) return;
             const baseData = [
                 ['Unidades', 'IMEI', 'ID', 'IMEI LENG', 'ID LENG', '', '', ''],
                 [1016, 863071012736986, '003535', 15, 6, '', '', ''],
                 [1017, 863071012769128, '003438', 15, 6, '', '', ''],
                 [1018, 863071013879850, '003519', 15, 6, '', -346421699523926, -583595314025879],
-                // ... (Truncated for brevity, just using what was in memory/UI)
             ];
 
-            // Try to get from current table if loaded and has data (more than just header)
             const tableData = window.baseHot ? window.baseHot.getData() : [];
             const dataToMigrate = (tableData.length > 1) ? tableData : baseData;
 
@@ -666,84 +1095,33 @@
                     batch.set(docRef, { row: row });
                 });
                 await batch.commit();
-                alert("✅ Migración completada.");
+                notify("✅ Migración completada.", "success");
             } catch (e) {
                 alert("Error: " + e.message);
             } finally {
                 showLoading(false);
             }
-        }
+        };
 
-    </script>
-
-    <!-- Legacy / Logic Scripts (Adapted) -->
-    <script>
-        // UI Helpers
-        function showLoading(show, text = "Cargando...") {
-            const el = document.getElementById('loading');
-            document.getElementById('loadingText').innerText = text;
-            el.style.display = show ? 'flex' : 'none';
-        }
-
-        function initTables() {
-            const container1 = document.getElementById('ptos-table');
-            const container2 = document.getElementById('base-table');
-
-            if (!container1) return;
-
-            // Clean
-            container1.innerHTML = '';
-            container2.innerHTML = '';
-
-            window.ptosHot = new Handsontable(container1, {
-                data: [['Dirección', 'Punto de recolección', 'Mobiliario urbano', 'Tipo', 'Tag', 'Rutas', 'Total', 'Pendientes', 'Promedio', 'Servicios', 'No Op', 'Cumplimiento', 'Latitud', 'Longitud', 'Unidad', 'Inicio', 'Fin']],
-                rowHeaders: true,
-                colHeaders: true,
-                height: '100%',
-                width: '100%',
-                licenseKey: 'non-commercial-and-evaluation',
-                minRows: 50,
-                minCols: 17,
-                contextMenu: true,
-                manualColumnResize: true,
-                stretchH: 'all',
-                className: 'htCenter', // Center text
-            });
-
-            // Base Data (initially empty or local fallback until Firebase loads)
-            window.baseHot = new Handsontable(container2, {
-                data: [['Unidades', 'IMEI', 'ID', 'IMEI LENG', 'ID LENG', '', '', '']],
-                rowHeaders: true,
-                colHeaders: true,
-                height: '100%',
-                width: '100%',
-                licenseKey: 'non-commercial-and-evaluation',
-                minRows: 50,
-                minCols: 9,
-                contextMenu: true,
-                manualColumnResize: true,
-                stretchH: 'all'
-            });
-        }
-
-        // ==========================================
-        // ARDUINO & USB
-        // ==========================================
+        // ------------------------------------------------------------
+        // COMUNICACIÓN ARDUINO Y AGENTE LOCAL
+        // ------------------------------------------------------------
         let port, writer;
         let isArduinoConnected = false;
 
-        async function connectArduino() {
+        window.connectArduino = async () => {
             if ("serial" in navigator) {
                 try {
                     port = await navigator.serial.requestPort();
                     await port.open({ baudRate: 9600 });
                     const textEncoder = new TextEncoderStream();
-                    const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+                    textEncoder.readable.pipeTo(port.writable);
                     writer = textEncoder.writable.getWriter();
 
                     isArduinoConnected = true;
                     updateArduinoUI(true);
-                    alert("🔌 Arduino Conectado!");
+                    updateArduinoSensadoUI(true);
+                    notify("🔌 Arduino Conectado!", "success");
                 } catch (err) {
                     console.error('Error:', err);
                     alert('❌ Error conectando Arduino: ' + err.message);
@@ -751,7 +1129,9 @@
             } else {
                 alert('⚠️ Navegador no compatible con USB Serial. Use Chrome.');
             }
-        }
+        };
+
+        window.connectArduinoSensado = () => window.connectArduino();
 
         function updateArduinoUI(connected) {
             const dot = document.getElementById('usbDot');
@@ -765,8 +1145,22 @@
             }
         }
 
-        async function sendToArduino() {
+        function updateArduinoSensadoUI(connected) {
+            const dot = document.getElementById('usbDotSensado');
+            const btn = document.getElementById('btnSendArduinoSensado');
+            if (!dot || !btn) return;
+            if (connected) {
+                dot.className = 'badge-status status-connected';
+                if (window.generatedSensado.length > 0) btn.disabled = false;
+            } else {
+                dot.className = 'badge-status status-disconnected';
+                btn.disabled = true;
+            }
+        }
+
+        window.sendToArduino = async () => {
             if (!isArduinoConnected || !writer) return alert('Conecta el Arduino primero');
+            if (window.generatedData.length === 0) return alert('No hay tramas generadas.');
 
             const btn = document.getElementById('btnSendArduino');
             btn.disabled = true; btn.innerHTML = 'Enviando...';
@@ -780,18 +1174,51 @@
                         await new Promise(r => setTimeout(r, 1000));
                     }
                 }
-                alert('✅ Envío a Arduino completado');
+                await window.registrarLogDeUso({
+                    modulo: "Puntos de Ruta",
+                    accion: "Enviado a Arduino USB",
+                    unidades: window.lastUnidadesPtos,
+                    tramas: window.generatedData
+                });
+                notify('✅ Envío a Arduino completado y registrado en Drive', 'success');
             } catch (e) {
                 alert('❌ Error USB: ' + e.message);
             } finally {
                 btn.disabled = false; btn.innerText = 'Enviar a Arduino';
             }
-        }
+        };
 
-        // ==========================================
-        // LOCAL AGENT
-        // ==========================================
-        async function sendToLocalAgent() {
+        window.sendToArduinoSensado = async () => {
+            if (!isArduinoConnected || !writer) return alert('Conecta el Arduino primero');
+            if (window.generatedSensado.length === 0) return alert('No hay tramas RUS04 generadas.');
+
+            const btn = document.getElementById('btnSendArduinoSensado');
+            btn.disabled = true; btn.innerHTML = 'Enviando...';
+
+            try {
+                for (let i = 0; i < window.generatedSensado.length; i++) {
+                    const line = window.generatedSensado[i];
+                    if (line.trim()) {
+                        await writer.write(line + "\n");
+                        logConsoleSensado(`🔌 USB: Enviando ${i + 1}/${window.generatedSensado.length}...`);
+                        await new Promise(r => setTimeout(r, 1000));
+                    }
+                }
+                await window.registrarLogDeUso({
+                    modulo: "Sensado RUS04",
+                    accion: "Enviado a Arduino USB",
+                    unidades: window.lastUnidadesSensado,
+                    tramas: window.generatedSensado
+                });
+                notify('✅ Envío a Arduino completado y registrado en Drive', 'success');
+            } catch (e) {
+                alert('❌ Error USB: ' + e.message);
+            } finally {
+                btn.disabled = false; btn.innerText = 'Enviar a Arduino';
+            }
+        };
+
+        window.sendToLocalAgent = async () => {
             if (window.generatedData.length === 0) return alert('No hay datos procesados para enviar.');
 
             const btn = document.getElementById('btnSendAgent');
@@ -819,8 +1246,14 @@
                 const res = await response.json();
 
                 if (response.ok) {
-                    alert(`✅ Agente: ${res.processed} líneas enviadas.`);
                     statusLabel.textContent = 'Online';
+                    await window.registrarLogDeUso({
+                        modulo: "Puntos de Ruta",
+                        accion: "Enviado a Agente Local",
+                        unidades: window.lastUnidadesPtos,
+                        tramas: window.generatedData
+                    });
+                    notify(`✅ Agente: ${res.processed} líneas enviadas y registradas en Drive.`, 'success');
                 } else {
                     throw new Error(res.error);
                 }
@@ -830,14 +1263,206 @@
             } finally {
                 btn.disabled = false; btn.innerText = 'Enviar Script';
             }
+        };
+
+        window.sendToLocalAgentSensado = async () => {
+            if (window.generatedSensado.length === 0) return alert('No hay tramas RUS04 generadas.');
+
+            const btn = document.getElementById('btnSendAgentSensado');
+            const statusLabel = document.getElementById('agentStatusSensado');
+
+            statusLabel.textContent = 'Buscando...';
+
+            try {
+                await fetch('http://127.0.0.1:5000/status');
+            } catch (e) {
+                alert('❌ Agente local no encontrado. Ejecuta el .exe primero.');
+                statusLabel.textContent = 'Offline';
+                return;
+            }
+
+            btn.disabled = true; btn.innerHTML = 'Enviando...';
+            statusLabel.textContent = 'Enviando...';
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/enviar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ lines: window.generatedSensado })
+                });
+                const res = await response.json();
+
+                if (response.ok) {
+                    statusLabel.textContent = 'Online';
+                    await window.registrarLogDeUso({
+                        modulo: "Sensado RUS04",
+                        accion: "Enviado a Agente Local",
+                        unidades: window.lastUnidadesSensado,
+                        tramas: window.generatedSensado
+                    });
+                    notify(`✅ Agente: ${res.processed} líneas enviadas y registradas en Drive.`, 'success');
+                } else {
+                    throw new Error(res.error);
+                }
+            } catch (e) {
+                alert('❌ Error Agente: ' + e.message);
+                statusLabel.textContent = 'Error';
+            } finally {
+                btn.disabled = false; btn.innerText = 'Enviar Script';
+            }
+        };
+
+        // ------------------------------------------------------------
+        // PROCESAMIENTO DE TRAMAS RUS03 Y RUS04
+        // ------------------------------------------------------------
+        const COL_UNIDAD = 14;
+        const COL_FECHA_HORA = 15;
+
+        const FORMATOS_FECHA = [
+            'YYYY-MM-DD', 'YYYY/MM/DD',
+            'DD/MM/YYYY', 'D/M/YYYY', 'DD-MM-YYYY', 'D-M-YYYY',
+            'DD/MM/YY', 'D/M/YY', 'DD-MM-YY', 'D-M-YY'
+        ];
+        const FORMATOS_HORA = ['HH:mm:ss', 'HH:mm', 'H:mm:ss', 'H:mm'];
+
+        const FORMATOS_FECHA_HORA = FORMATOS_FECHA
+            .flatMap(f => [f].concat(FORMATOS_HORA.flatMap(h => [`${f} ${h}`, `${f}T${h}`])))
+            .concat(['DDMMYYHHmmss']);
+
+        function parseFechaHora(value) {
+            if (value === null || value === undefined) return null;
+            if (value instanceof Date) {
+                const md = moment(value);
+                return md.isValid() ? md : null;
+            }
+
+            const texto = String(value).trim();
+            if (!texto) return null;
+
+            if (/^\d+([.,]\d+)?$/.test(texto)) {
+                const serial = parseFloat(texto.replace(',', '.'));
+                if (serial > 20000 && serial < 80000) {
+                    return moment('1899-12-30', 'YYYY-MM-DD').add(Math.round(serial * 86400), 'seconds');
+                }
+            }
+
+            const estricto = moment(texto.replace(/\s+/g, ' '), FORMATOS_FECHA_HORA, true);
+            if (estricto.isValid()) return estricto;
+
+            const libre = moment(texto);
+            return libre.isValid() ? libre : null;
         }
 
-        // ==========================================
-        // PROCESAMIENTO
-        // ==========================================
-        async function processData() {
-            showLoading(true, "Procesando Rutas...");
+        const FORMATO_SALIDA = 'YYYY-MM-DD HH:mm';
+        const COLA_RUS03 = '29900000734261011';
+        const COLA_RUS04 = '29900000734261011';
+        const IP1_RUS03 = '000C';
+        const IP1_RUS04 = '000C';
+        const CODIGO_ENTRADA_DEFAULT = '001';
+        const ESTADO_ENTRADA_DEFAULT = '1';
+        const DESFASE_RUS04_SEGUNDOS = 2;
+
+        function encodeCoord(valor, digitos) {
+            const signo = valor < 0 ? '-' : '';
+            const n = Math.round(Math.abs(valor) * 100000);
+            return signo + String(n).padStart(digitos, '0').slice(-digitos);
+        }
+
+        function checksumTrama(cuerpo) {
+            let v = 0;
+            for (let i = 0; i < cuerpo.length; i++) v ^= cuerpo.charCodeAt(i) & 0xFF;
+            return v.toString(16).toUpperCase().padStart(2, '0');
+        }
+
+        function cerrarTrama(cuerpo) {
+            return cuerpo + checksumTrama(cuerpo) + '<';
+        }
+
+        function construirRus04(ts, latRaw, longRaw, imei, codigo, estado, id) {
+            const latStr = encodeCoord(latRaw, 7);
+            const longStr = encodeCoord(longRaw, 8);
+            const cuerpo = `>RUS04,${ts}${latStr}${longStr}${COLA_RUS04},${imei},${codigo},${estado};ID=${id};#IP1:${IP1_RUS04};*`;
+            return cerrarTrama(cuerpo);
+        }
+
+        function fechaDeFila(row) {
+            return parseFechaHora(row[COL_FECHA_HORA]);
+        }
+
+        function unidadDeFila(row) {
+            const valor = row[COL_UNIDAD];
+            if (valor === null || valor === undefined) return null;
+            const texto = String(valor).trim();
+            return texto || null;
+        }
+
+        function textoCorto(valor, largo = 40) {
+            const texto = valor ? String(valor).trim() : '(sin ruta)';
+            return texto.length > largo ? texto.substring(0, largo - 3) + '...' : texto;
+        }
+
+        function pedirDatosFaltantes(modal, ctx) {
+            const unidadBlock = document.getElementById('unidadBlock');
+            const fechasBlock = document.getElementById('fechasBlock');
+            const avisoFechas = document.getElementById('fechasDetectadas');
+            const btnOk = document.getElementById('submitRoute');
+            const btnSkip = document.getElementById('skipRoute');
+
+            document.getElementById('routeForm').reset();
+            document.getElementById('filaActualText').innerText = `${ctx.numeroFila} — ${textoCorto(ctx.direccion)}`;
+            document.getElementById('rutaActualText').innerText = textoCorto(ctx.ruta);
+
+            unidadBlock.classList.toggle('d-none', !ctx.faltaUnidad);
+            fechasBlock.classList.toggle('d-none', !ctx.faltaFecha);
+            avisoFechas.classList.toggle('d-none', ctx.faltaFecha);
+
+            if (!ctx.faltaFecha) {
+                document.getElementById('fechasDetectadasText').innerText = ctx.fecha.format(FORMATO_SALIDA);
+            } else {
+                document.getElementById('fechaHora').value = moment().format('YYYY-MM-DDTHH:mm');
+            }
+
+            return new Promise(resolve => {
+                const cerrar = (valor) => {
+                    btnOk.removeEventListener('click', onOk);
+                    btnSkip.removeEventListener('click', onSkip);
+                    modal.hide();
+                    setTimeout(() => resolve(valor), 300);
+                };
+
+                const onOk = () => {
+                    const aplicarRestantes = document.getElementById('aplicarRestantes').checked;
+                    let unidad = null, fecha = null;
+
+                    if (ctx.faltaUnidad) {
+                        unidad = document.getElementById('unidad').value.trim();
+                        if (!unidad) { alert('Indica la unidad asignada'); return; }
+                    }
+
+                    if (ctx.faltaFecha) {
+                        const valor = document.getElementById('fechaHora').value;
+                        fecha = parseFechaHora(valor);
+                        if (!fecha) { alert('Completa la fecha y hora'); return; }
+                    }
+
+                    cerrar({ unidad: unidad, fecha: fecha, aplicarRestantes: aplicarRestantes });
+                };
+
+                const onSkip = () => cerrar(null);
+
+                btnOk.addEventListener('click', onOk);
+                btnSkip.addEventListener('click', onSkip);
+                modal.show();
+            });
+        }
+
+        window.verificarDatos = async () => {
+            showLoading(true, "Verificando líneas...");
             window.generatedData = [];
+            const unidadesSet = new Set();
+
+            const rus04Keys = new Set();
+            let rus04Duplicados = 0;
 
             try {
                 const allData = window.ptosHot.getData();
@@ -845,128 +1470,295 @@
 
                 if (data.length === 0) throw new Error('Tabla vacía o sin datos válidos.');
 
-                // Agrupar Rutas
-                const rutasSet = new Set();
-                data.forEach(r => {
-                    if (r[5] && r[5].toString().trim()) rutasSet.add(r[5].toString().trim());
-                });
-
-                const rutas = [...rutasSet];
-                if (rutas.length === 0) throw new Error('No se encontraron rutas en la columna "Rutas"');
-
-                // Configurar cada ruta
-                const routeInfo = {};
                 const modalElement = document.getElementById('routeModal');
                 const modal = new bootstrap.Modal(modalElement, { backdrop: 'static', keyboard: false });
 
-                showLoading(false); // Hide loading to show modal logic
+                showLoading(false);
 
-                for (const rutaString of rutas) {
-                    const rutaVisual = rutaString.length > 40 ? rutaString.substring(0, 37) + '...' : rutaString;
-                    document.getElementById('rutaActualText').innerText = rutaVisual;
+                const pendientes = [];
+                const omitidas = [];
+                const porDefectoRuta = {};
 
-                    // Reset inputs
-                    document.getElementById('routeForm').reset();
-                    // Defaults
-                    document.getElementById('fechaInicio').value = new Date(Date.now() - 86400000).toISOString().split('T')[0];
-                    document.getElementById('fechaFin').value = new Date().toISOString().split('T')[0];
+                for (const row of data) {
+                    const realIdx = allData.indexOf(row);
+                    const numeroFila = realIdx + 1;
+                    const ruta = row[5] ? row[5].toString().trim() : '';
 
-                    await new Promise(resolve => {
-                        const handler = () => {
-                            const u = document.getElementById('unidad').value;
-                            const d1 = document.getElementById('fechaInicio').value;
-                            const d2 = document.getElementById('fechaFin').value;
-                            const t1 = document.getElementById('inicioHora').value;
-                            const t2 = document.getElementById('finHora').value;
+                    if (!row[12] || !row[13]) {
+                        omitidas.push(`Fila ${numeroFila}: sin latitud/longitud`);
+                        continue;
+                    }
 
-                            if (u && d1 && d2 && t1 && t2) {
-                                modal.hide();
-                                document.getElementById('submitRoute').removeEventListener('click', handler);
-                                setTimeout(() => resolve(routeInfo[rutaString] = { unidad: u, inicio: `${d1} ${t1}`, fin: `${d2} ${t2}` }), 300);
-                            } else {
-                                alert('Completa todos los campos');
-                            }
-                        };
-                        document.getElementById('submitRoute').addEventListener('click', handler);
-                        modal.show();
-                    });
+                    const reusable = porDefectoRuta[ruta] || {};
+                    let unidad = unidadDeFila(row) || reusable.unidad || null;
+                    let fecha = fechaDeFila(row) || (reusable.fecha ? reusable.fecha.clone() : null);
+
+                    if (!unidad || !fecha) {
+                        const respuesta = await pedirDatosFaltantes(modal, {
+                            numeroFila: numeroFila,
+                            direccion: row[0],
+                            ruta: ruta,
+                            faltaUnidad: !unidad,
+                            faltaFecha: !fecha,
+                            fecha: fecha
+                        });
+
+                        if (!respuesta) {
+                            omitidas.push(`Fila ${numeroFila}: omitida por el usuario`);
+                            continue;
+                        }
+
+                        unidad = unidad || respuesta.unidad;
+                        fecha = fecha || respuesta.fecha;
+
+                        if (respuesta.aplicarRestantes) {
+                            porDefectoRuta[ruta] = {
+                                unidad: respuesta.unidad || reusable.unidad,
+                                fecha: respuesta.fecha || reusable.fecha
+                            };
+                        }
+                    }
+
+                    pendientes.push({ row: row, realIdx: realIdx, unidad: unidad, fecha: fecha });
                 }
 
                 showLoading(true, "Generando tramas...");
                 let logText = '';
+                let totalRus04 = 0, totalRus03 = 0;
 
-                // Build output
-                // BASE DATA viene de HotTable (que fue cargada de Firebase)
                 const baseData = window.baseHot.getData();
 
-                data.forEach((row, i) => {
-                    const realIdx = allData.indexOf(row);
-                    const cellContent = row[5] ? row[5].toString().trim() : '';
-                    const info = routeInfo[cellContent];
+                pendientes.forEach((item) => {
+                    const row = item.row;
+                    const realIdx = item.realIdx;
+                    unidadesSet.add(item.unidad);
 
-                    if (!info || !row[12] || !row[13]) return;
+                    window.ptosHot.setDataAtCell(realIdx, COL_UNIDAD, item.unidad);
+                    window.ptosHot.setDataAtCell(realIdx, COL_FECHA_HORA, item.fecha.format(FORMATO_SALIDA));
 
-                    // Update UI Cells
-                    window.ptosHot.setDataAtCell(realIdx, 14, info.unidad);
-                    window.ptosHot.setDataAtCell(realIdx, 15, info.inicio);
-                    window.ptosHot.setDataAtCell(realIdx, 16, info.fin);
-
-                    // Logic
                     const lat = parseFloat(row[12]), long = parseFloat(row[13]);
-                    const procLat = (lat < 0 ? '-' : '') + Math.abs(lat).toString().replace('.', '').padEnd(15, '0').slice(0, 7);
-                    const procLong = (long < 0 ? '-' : '') + Math.abs(long).toString().replace('.', '').padEnd(15, '0').slice(0, 6);
+                    const procLat = encodeCoord(lat, 7);
+                    const procLong = encodeCoord(long, 8);
 
-                    window.ptosHot.setDataAtCell(realIdx, 12, procLat);
-                    window.ptosHot.setDataAtCell(realIdx, 13, procLong);
+                    const horaBase = item.fecha.clone().add(3, 'hours');
+                    const horaRus04 = horaBase.clone().add(DESFASE_RUS04_SEGUNDOS, 'seconds');
 
-                    const m1 = moment(info.inicio), m2 = moment(info.fin);
-                    const rnd = Math.floor(Math.random() * m2.diff(m1, 'minutes'));
-                    const hora = m1.clone().add(rnd, 'minutes').add(3, 'hours');
-
-                    const uRow = baseData.find(x => x[0] == info.unidad);
+                    const uRow = baseData.find(x => x[0] == item.unidad);
                     const imei = uRow ? uRow[1] : '#N/A';
                     const id = uRow ? uRow[2] : '#N/A';
 
-                    // PROTOCOL LINE
-                    const line = `>RUS03,${hora.format('DDMMYYHHmmss')}${procLat}${procLong}2929900000734261011,${imei},0000000${row[4] || '0'},001;ID=${id};#IP1:000C;*07<`;
+                    const ts03 = horaBase.format('DDMMYYHHmmss');
+                    const ts04 = horaRus04.format('DDMMYYHHmmss');
 
-                    window.generatedData.push(line);
-                    logText += `[${i}] ${line}\n`;
+                    const rus03 = cerrarTrama(`>RUS03,${ts03}${procLat}${procLong}${COLA_RUS03},${imei},0000000${row[4] || '0'},001;ID=${id};#IP1:${IP1_RUS03};*`);
+                    const rus04 = construirRus04(ts04, lat, long, imei, CODIGO_ENTRADA_DEFAULT, ESTADO_ENTRADA_DEFAULT, id);
+
+                    logText += `Fila ${realIdx + 1} | Unidad ${item.unidad} | ${item.fecha.format(FORMATO_SALIDA)}\n`;
+
+                    const claveRus04 = `RUS04|${imei}|${ts04}|${CODIGO_ENTRADA_DEFAULT}|${ESTADO_ENTRADA_DEFAULT}`;
+                    if (!rus04Keys.has(claveRus04)) {
+                        rus04Keys.add(claveRus04);
+                        window.generatedData.push(rus04);
+                        totalRus04++;
+                        logText += `  ${rus04}\n`;
+                    } else {
+                        rus04Duplicados++;
+                        logText += `  (RUS04 duplicado para ${imei} @ ${ts04}, omitido)\n`;
+                    }
+
+                    window.generatedData.push(rus03);
+                    totalRus03++;
+                    logText += `  ${rus03}\n`;
                 });
 
                 window.ptosHot.render();
-                logConsole(logText || 'Ningún dato generado.');
+                window.lastUnidadesPtos = Array.from(unidadesSet);
 
-                // Enable Buttons
+                document.getElementById('kpiFilas').innerText = totalRus03;
+                document.getElementById('kpiRus03').innerText = totalRus03;
+                document.getElementById('kpiRus04').innerText = totalRus04;
+                document.getElementById('kpiTotal').innerText = window.generatedData.length;
+
+                const resumen = `✅ ${totalRus03} líneas procesadas — ${window.generatedData.length} tramas listas para enviar ` +
+                    `(${totalRus03} RUS03 + ${totalRus04} RUS04${rus04Duplicados > 0 ? `, ${rus04Duplicados} duplicados omitidos` : ''})`;
+
+                logText = `${resumen}\n\n` + logText;
+
+                if (omitidas.length > 0) {
+                    logText += `\n--- ${omitidas.length} fila(s) sin procesar ---\n` + omitidas.join('\n') + '\n';
+                }
+
+                logConsole(logText.trim() || 'Ningún dato generado.');
+
                 if (window.generatedData.length > 0) {
                     document.getElementById('btnSendAgent').disabled = false;
                     if (isArduinoConnected) document.getElementById('btnSendArduino').disabled = false;
+
+                    // Guardar log en Google Drive personal y Firestore
+                    window.registrarLogDeUso({
+                        modulo: "Puntos de Ruta",
+                        accion: "Verificación y Generación",
+                        unidades: window.lastUnidadesPtos,
+                        tramas: window.generatedData
+                    });
                 }
 
-                alert(`✅ ${window.generatedData.length} Tramas generadas correctamente.`);
+                notify(`${totalRus03} líneas procesadas (${window.generatedData.length} tramas). Log enviado a Drive.`, "success");
 
             } catch (e) {
-                alert("❌ Error en proceso: " + e.message);
+                alert("❌ Error en la verificación: " + e.message);
                 console.error(e);
             } finally {
                 showLoading(false);
             }
-        }
+        };
+
+        window.generarRus04 = async () => {
+            if (!window.sensadoHot) return alert('Tabla de Sensado no inicializada.');
+
+            window.generatedSensado = [];
+            const unidadesSet = new Set();
+
+            const allData = window.sensadoHot.getData();
+            const data = allData.slice(1).filter(r => r[0] && r[0].toString().trim() !== '');
+
+            if (data.length === 0) return alert('La tabla de Sensado está vacía.');
+
+            const baseData = window.baseHot ? window.baseHot.getData() : [];
+
+            let logText = '';
+            let total = 0;
+            const omitidas = [];
+
+            for (const row of data) {
+                const realIdx = allData.indexOf(row);
+                const numeroFila = realIdx + 1;
+
+                if (!row[12] || !row[13]) {
+                    omitidas.push(`Fila ${numeroFila}: sin latitud/longitud`);
+                    continue;
+                }
+
+                const unidad = row[14] !== null && row[14] !== undefined ? String(row[14]).trim() : '';
+                const fecha = parseFechaHora(row[15]);
+
+                if (!unidad) {
+                    omitidas.push(`Fila ${numeroFila}: sin unidad`);
+                    continue;
+                }
+                if (!fecha) {
+                    omitidas.push(`Fila ${numeroFila}: sin fecha válida`);
+                    continue;
+                }
+
+                const lat = parseFloat(row[12]);
+                const long = parseFloat(row[13]);
+                if (isNaN(lat) || isNaN(long)) {
+                    omitidas.push(`Fila ${numeroFila}: lat/long inválidas`);
+                    continue;
+                }
+
+                unidadesSet.add(unidad);
+                const uRow = baseData.find(x => x[0] == unidad);
+                const imei = uRow ? uRow[1] : '#N/A';
+                const id = uRow ? uRow[2] : '#N/A';
+
+                const horaBase = fecha.clone().add(3, 'hours');
+                const horaRus04 = horaBase.clone().add(DESFASE_RUS04_SEGUNDOS, 'seconds');
+                const ts04 = horaRus04.format('DDMMYYHHmmss');
+
+                const rus04 = construirRus04(ts04, lat, long, imei, CODIGO_ENTRADA_DEFAULT, ESTADO_ENTRADA_DEFAULT, id);
+
+                window.generatedSensado.push(rus04);
+                total++;
+                logText += `Fila ${numeroFila} | Unidad ${unidad} | ${fecha.format(FORMATO_SALIDA)}\n  ${rus04}\n`;
+            }
+
+            window.lastUnidadesSensado = Array.from(unidadesSet);
+
+            const resumen = `✅ ${total} RUS04 generados — ${window.generatedSensado.length} tramas listas para enviar`;
+            logText = `${resumen}\n\n${logText}`;
+
+            if (omitidas.length > 0) {
+                logText += `\n--- ${omitidas.length} fila(s) sin procesar ---\n` + omitidas.join('\n') + '\n';
+            }
+
+            logConsoleSensado(logText.trim() || 'Ningún dato generado.');
+
+            if (window.generatedSensado.length > 0) {
+                document.getElementById('btnSendAgentSensado').disabled = false;
+                if (isArduinoConnected) document.getElementById('btnSendArduinoSensado').disabled = false;
+
+                window.registrarLogDeUso({
+                    modulo: "Sensado RUS04",
+                    accion: "Generación RUS04",
+                    unidades: window.lastUnidadesSensado,
+                    tramas: window.generatedSensado
+                });
+            }
+
+            notify(`${total} RUS04 generados y registrados en tu Drive.`, "success");
+        };
+
+        window.limpiarPtos = () => {
+            if (!window.ptosHot) return;
+            if (!confirm('¿Borrar todo el contenido de la tabla de Puntos de Ruta?')) return;
+            window.ptosHot.loadData([['Dirección', 'Punto de recolección', 'Mobiliario urbano', 'Tipo', 'Tag', 'Rutas', 'Total', 'Pendientes', 'Promedio', 'Servicios', 'No Op', 'Cumplimiento', 'Latitud', 'Longitud', 'Unidad', 'Fecha y hora']]);
+            window.generatedData = [];
+            document.getElementById('kpiFilas').innerText = '0';
+            document.getElementById('kpiRus03').innerText = '0';
+            document.getElementById('kpiRus04').innerText = '0';
+            document.getElementById('kpiTotal').innerText = '0';
+            document.getElementById('btnSendAgent').disabled = true;
+            document.getElementById('btnSendArduino').disabled = true;
+            logConsole('Tabla limpiada.');
+        };
+
+        window.limpiarSensado = () => {
+            if (!window.sensadoHot) return;
+            if (!confirm('¿Borrar todo el contenido de la tabla de Sensado?')) return;
+            window.sensadoHot.loadData([['Dirección', 'Punto de recolección', 'Mobiliario urbano', 'Tipo', 'Tag', 'Rutas', 'Total', 'Pendientes', 'Promedio', 'Servicios', 'No Op', 'Cumplimiento', 'Latitud', 'Longitud', 'Unidad', 'Fecha y hora']]);
+            window.generatedSensado = [];
+            document.getElementById('btnSendAgentSensado').disabled = true;
+            document.getElementById('btnSendArduinoSensado').disabled = true;
+            logConsoleSensado('Tabla limpiada.');
+        };
+
+        window.copiarTramas = (origen) => {
+            const lista = origen === 'sensado' ? window.generatedSensado : window.generatedData;
+            if (!lista || lista.length === 0) return notify("No hay tramas generadas para copiar.", "warning");
+            navigator.clipboard.writeText(lista.join('\n'));
+            notify("📋 Tramas copiadas al portapapeles", "info");
+        };
+
+        window.descargarTramas = (origen) => {
+            const lista = origen === 'sensado' ? window.generatedSensado : window.generatedData;
+            if (!lista || lista.length === 0) return notify("No hay tramas generadas para descargar.", "warning");
+            const blob = new Blob([lista.join('\n')], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `tramas_${origen}_${moment().format('YYYYMMDD_HHmmss')}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+        };
 
         function logConsole(text) {
             const out = document.getElementById('output');
-            out.innerText = text;
-            out.scrollTop = out.scrollHeight;
+            if (out) {
+                out.innerText = text;
+                out.scrollTop = out.scrollHeight;
+            }
         }
 
-        // Init
-        document.addEventListener('DOMContentLoaded', () => {
-            // Check internet or auth stuff
-            // The Firebase listener handles most of the init
-        });
-
+        function logConsoleSensado(text) {
+            const out = document.getElementById('outputSensado');
+            if (out) {
+                out.innerText = text;
+                out.scrollTop = out.scrollHeight;
+            }
+        }
     </script>
 </body>
-
 
 </html>
